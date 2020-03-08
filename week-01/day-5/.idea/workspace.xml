@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8834fec4-6b5c-4ee6-954c-a9424eed6a4b" name="Default Changelist" comment="" />
+    <list default="true" id="8834fec4-6b5c-4ee6-954c-a9424eed6a4b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/day-5/drawPyramid.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/day-5/drawPyramid.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/drawPyramid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/drawPyramid.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -35,10 +39,25 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="extract.method.default.visibility" value="private" />
   </component>
-  <component name="RunManager" selected="Application.drawPyramid">
-    <configuration name="countFromTo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="countFromTo" />
+  <component name="RunManager" selected="Application.DrawChessTable">
+    <configuration name="DrawChessTable" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="DrawChessTable" />
+      <module name="day-5" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DrawDiagonal" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="DrawDiagonal" />
+      <module name="day-5" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GuessTheNumber" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="GuessTheNumber" />
       <module name="day-5" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -58,27 +77,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="fizzBuzz" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="fizzBuzz" />
-      <module name="day-5" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="multiplicationTable" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="multiplicationTable" />
-      <module name="day-5" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.DrawChessTable" />
+        <item itemvalue="Application.GuessTheNumber" />
         <item itemvalue="Application.drawPyramid" />
+        <item itemvalue="Application.DrawDiagonal" />
         <item itemvalue="Application.drawTriangle" />
-        <item itemvalue="Application.fizzBuzz" />
-        <item itemvalue="Application.countFromTo" />
-        <item itemvalue="Application.multiplicationTable" />
       </list>
     </recent_temporary>
   </component>
@@ -93,6 +98,7 @@
       <option name="presentableId" value="Default" />
       <updated>1583481824718</updated>
       <workItem from="1583481827545" duration="20526000" />
+      <workItem from="1583684991081" duration="11428000" />
     </task>
     <servers />
   </component>
@@ -100,22 +106,22 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1253" height="150" key="GridCell.Tab.0.bottom" timestamp="1583513429856">
+    <state width="836" height="175" key="GridCell.Tab.0.bottom" timestamp="1583698460481">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="150" key="GridCell.Tab.0.bottom/67.27.1299.741@67.27.1299.741" timestamp="1583513429856" />
-    <state width="1253" height="150" key="GridCell.Tab.0.center" timestamp="1583513429854">
+    <state width="836" height="175" key="GridCell.Tab.0.bottom/67.27.1299.741@67.27.1299.741" timestamp="1583698460481" />
+    <state width="836" height="175" key="GridCell.Tab.0.center" timestamp="1583698460480">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="150" key="GridCell.Tab.0.center/67.27.1299.741@67.27.1299.741" timestamp="1583513429854" />
-    <state width="1253" height="150" key="GridCell.Tab.0.left" timestamp="1583513429854">
+    <state width="836" height="175" key="GridCell.Tab.0.center/67.27.1299.741@67.27.1299.741" timestamp="1583698460480" />
+    <state width="836" height="175" key="GridCell.Tab.0.left" timestamp="1583698460479">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="150" key="GridCell.Tab.0.left/67.27.1299.741@67.27.1299.741" timestamp="1583513429854" />
-    <state width="1253" height="150" key="GridCell.Tab.0.right" timestamp="1583513429855">
+    <state width="836" height="175" key="GridCell.Tab.0.left/67.27.1299.741@67.27.1299.741" timestamp="1583698460479" />
+    <state width="836" height="175" key="GridCell.Tab.0.right" timestamp="1583698460480">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="150" key="GridCell.Tab.0.right/67.27.1299.741@67.27.1299.741" timestamp="1583513429855" />
+    <state width="836" height="175" key="GridCell.Tab.0.right/67.27.1299.741@67.27.1299.741" timestamp="1583698460480" />
     <state width="1253" height="150" key="GridCell.Tab.1.bottom" timestamp="1583513429901">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
@@ -132,6 +138,14 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state width="1253" height="150" key="GridCell.Tab.1.right/67.27.1299.741@67.27.1299.741" timestamp="1583513429900" />
+    <state x="449" y="138" width="524" height="516" key="extract.method.dialog" timestamp="1583689710457">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="449" y="138" width="524" height="516" key="extract.method.dialog/67.27.1299.741@67.27.1299.741" timestamp="1583689710457" />
+    <state x="412" y="27" width="598" height="741" key="refactoring.ChangeSignatureDialog" timestamp="1583689733522">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="412" y="27" width="598" height="741" key="refactoring.ChangeSignatureDialog/67.27.1299.741@67.27.1299.741" timestamp="1583689733522" />
     <state x="379" y="89" key="search.everywhere.popup" timestamp="1583488152519">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
