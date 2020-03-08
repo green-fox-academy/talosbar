@@ -35,7 +35,6 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunManager" selected="Application.drawPyramid">
     <configuration name="countFromTo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -133,10 +132,6 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state width="1253" height="150" key="GridCell.Tab.1.right/67.27.1299.741@67.27.1299.741" timestamp="1583513429900" />
-    <state x="372" y="225" key="com.intellij.ide.util.TipDialog" timestamp="1583684993562">
-      <screen x="67" y="27" width="1299" height="741" />
-    </state>
-    <state x="372" y="225" key="com.intellij.ide.util.TipDialog/67.27.1299.741@67.27.1299.741" timestamp="1583684993562" />
     <state x="379" y="89" key="search.everywhere.popup" timestamp="1583488152519">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
