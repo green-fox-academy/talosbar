@@ -4,18 +4,18 @@ import java.util.Arrays;
 import java.util.Iterator;
 
 public class ListIntroduction1 {
-    public static void main(String[] args) {
-        ArrayList<String> names = new ArrayList<>();
+  public static void main(String[] args) {
+    ArrayList<String> names = new ArrayList<>();
 //        int size = names.size();
 //        System.out.println(size);
 
-        names.add("William");
+    names.add("William");
 
 //        System.out.println("Is the list empty? " + names.isEmpty());
 //        }
 
-        names.add("John");
-        names.add("Amanda");
+    names.add("John");
+    names.add("Amanda");
 //        System.out.println(names.size());
 //        System.out.println(names.get(2));
 
@@ -25,11 +25,11 @@ public class ListIntroduction1 {
 //            System.out.println(indivItems.next());
 
 //        }
-        for (int i = 0; i < names.size(); i++) {
-            System.out.printf("%d. %s\n", i+1, names.get(i));
+    for (int i = 0; i < names.size(); i++) {
+      System.out.printf("%d. %s\n", i + 1, names.get(i));
 
 
-        }
     }
+  }
 }
 

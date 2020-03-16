@@ -1,11 +1,20 @@
 public class AppendAFunc {
-    static void appendAFuc(String typo) {
-        System.out.println(typo + "a");
-    }
+  static String appendAFuc(String typo) {
 
-    public static void main(String[] args) {
-        appendAFuc("Chinchill");
-    }
+//      StringBuilder newString = new StringBuilder(typo);
+//      newString.append("a");
+//
+//      return newString.toString();
+
+    return typo + "a";
+  }
+
+  public static void main(String[] args) {
+    String typo = "Chinchill";
+
+    System.out.println(appendAFuc(typo));
+
+  }
 
 }
 
@@ -14,3 +23,6 @@ public class AppendAFunc {
 //   appends an 'a' character to its end and returns with a string
 //
 // - Print the result of `appendAFunc(typo)`
+
+//The append is not done, you just print a string that has an "a" appended. The original value is the same.
+// Also, the return type is missing.

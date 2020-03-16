@@ -1,11 +1,17 @@
+// - Create an array variable named numbers
+// with the following content: [1, 2, 3, 4, 5]
+// - Increment the third element
+// - Print the third element
+
 public class IncrementElement {
-    public static void main (String[] args) {
+  public static void main(String[] args) {
 
-        int[] newArray = {1, 2, 3, 4, 5};
-        for (int i = 2; i < 3; i++) {
-            newArray[i] += 1;
-            System.out.println(newArray[i]);
-        }
+    int[] newArray = {1, 2, 3, 4, 5};
 
-    }
+    newArray[2]++;
+
+    System.out.println(newArray[2]);
+
+
+  }
 }

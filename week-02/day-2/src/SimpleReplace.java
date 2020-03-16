@@ -1,9 +1,9 @@
 public class SimpleReplace {
-    public static void main(String... args) {
-        String sentence = "In a dishwasher far far away";
-        String replaceString = sentence.replace("dishwasher", "galaxy");
-        System.out.println(replaceString);
-    }
+  public static void main(String... args) {
+    String sentence = "In a dishwasher far far away";
+    String replaceString = sentence.replace("dishwasher", "galaxy");
+    System.out.println(replaceString);
+  }
 }
 
 
