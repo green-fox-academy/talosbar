@@ -8,27 +8,70 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MostCommonCharacters {
-  static void returnMostCommonCharacters() {
+  static HashMap<Character, Integer> returnMostCommonCharacters(String fileName) {
+    List<String> lines = getFileContent(fileName);
+
+    HashMap<Character, Integer> countCharacters = countCharacters(lines);
+    HashMap<Character, Integer> mostCommonCharacters = getTopTwoPair(countCharacters);
+
+    return mostCommonCharacters;
+  }
+
+  private static List<String> getFileContent(String fileName) {
+    Path filePath = Paths.get("assets/" + fileName);
+    List<String> lines;
     try {
-      Path filePath = Paths.get("/home/atanaz/Desktop/exam-trial-basics/countchar.txt");
-      List<String> characters = Files.readAllLines(filePath);
-      HashMap<Character, Integer> charCountMap = new HashMap<>();
-      for (String character : characters) {
-        if(charCountMap.containsKey(character)) {
-          charCountMap.put(character, charCountMap(character)+1);
-        }
-        else {
-          charCountMap.put(character,1);
-        }
-      }
+      lines = Files.readAllLines(filePath);
     } catch (IOException e) {
-      System.out.println("File does not exist");
+      throw new RuntimeException("File does not exist");
     }
+    return lines;
+  }
+
+  private static HashMap<Character, Integer> getTopTwoPair(HashMap<Character, Integer> countCharacters) {
+    HashMap<Character, Integer> mostCommonCharacters = new HashMap<>();
+
+    for (int i = 0; i < 2; i++) {
+      Map.Entry<Character, Integer> maxEntry = findMaxEntry(countCharacters);
+      mostCommonCharacters.put(maxEntry.getKey(), maxEntry.getValue());
+      countCharacters.remove(maxEntry.getKey());
+    }
+    return mostCommonCharacters;
+  }
+
+  private static HashMap<Character, Integer> countCharacters(List<String> lines) {
+    HashMap<Character, Integer> countCharacters = new HashMap<>();
+    for (String line : lines) {
+      for (int i = 0; i < line.length(); i++) {
+        char character = line.charAt(i);
+        int counter = 1;
+        if (countCharacters.containsKey(character)) {
+          counter = countCharacters.get(character) + 1;
+        }
+//          int counter = countCharacters.getOrDefault(character, 0) + 1;
+        countCharacters.put(character, counter);
+      }
+    }
+    return countCharacters;
+  }
+
+  private static Map.Entry<Character, Integer> findMaxEntry(HashMap<Character, Integer> countCharacters) {
+    Map.Entry<Character, Integer> maxEntry = null;
+    for (Map.Entry<Character, Integer> entry : countCharacters.entrySet()) {
+      if (maxEntry == null || entry.getValue().compareTo(maxEntry.getValue()) > 0) {
+        maxEntry = entry;
+      }
+    }
+    return maxEntry;
   }
 
   public static void main(String[] args) {
-    returnMostCommonCharacters();
+    HashMap<Character, Integer> mostCommonCharacters = returnMostCommonCharacters("countchar.txt");
+    for (Character key : mostCommonCharacters.keySet()) {
+      System.out.println("\"" + key + "\": " + mostCommonCharacters.get(key));
+    }
   }
 }
