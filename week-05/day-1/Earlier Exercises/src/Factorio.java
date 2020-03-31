@@ -11,7 +11,7 @@ public class Factorio {
 
   public static int factorio(int yourNumber) {
     int factorial = 1;
-    for (int i = 1; i < yourNumber; i++) {
+    for (int i = 1; i <= yourNumber; i++) {
       factorial = factorial * i;
     }
     return factorial;
