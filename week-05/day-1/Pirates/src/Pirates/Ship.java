@@ -15,44 +15,57 @@ import java.util.ArrayList;
 
 public class Ship {
   private Pirate captain;
-
   private ArrayList<Pirate> crew;
+
   public Ship() {
     this.captain = null;
     this.crew = new ArrayList<>();
   }
 
-  public void fillShip() {
-    captain = new Pirate();
-    int numberOfPirates = (int) (Math.random() * 100);
-
-    for (int i = 0; i < numberOfPirates; i++) {
-      crew.add(new Pirate());
+  public void addPirate(Pirate pirate) {
+    if (pirate.isACaptain()) {
+      this.captain = pirate;
+    } else {
+      crew.add(pirate);
     }
   }
 
-  public void getPoorPirates() {
+  public ArrayList<String> getPoorPirates() {
+    ArrayList<String> namesOfPoorPirates = new ArrayList<>();
+    if (this.captain.isPoor()) {
+      namesOfPoorPirates.add(captain.getName());
+    }
+
     for (int i = 0; i < crew.size(); i++) {
-      if (Pirate.hasAWoodenLeg() && Pirate.getAmountOfGold() < 15) {
-        System.out.println(crew.get(i));
+      if (crew.get(i).isPoor()) {
+        namesOfPoorPirates.add(crew.get(i).getName());
       }
     }
+    return namesOfPoorPirates;
   }
 
-  public void getGold() {
-    int counter = 0;
+  public int getGold() {
+    int counter = captain.getAmountOfGold();
     for (Pirate pirate : crew) {
-      if (Pirate.getAmountOfGold() != 0) {
-        counter++;
-      }
+      counter += pirate.getAmountOfGold();
     }
+    return counter;
   }
 
-  public Pirate getCaptain() {
-    return captain;
+  public void lastDayOnTheShip() {
+    for (Pirate pirate : crew) {
+      pirate.party();
+    }
+    captain.party();
   }
 
-  public ArrayList<Pirate> getCrew() {
-    return crew;
+  public void prepareForBattle() {
+    for (int j = 0; j < 5; j++) {
+      for (Pirate pirate : crew) {
+        pirate.work();
+      }
+      captain.work();
+    }
+    lastDayOnTheShip();
   }
 }

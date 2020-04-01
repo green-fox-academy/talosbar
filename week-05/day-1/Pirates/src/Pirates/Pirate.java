@@ -19,20 +19,31 @@ package Pirates;
 public class Pirate {
 
   private String name;
-  private static int amountOfGold;
+  private int amountOfGold;
+
   private int healthPoints;
 
   private boolean isACaptain;
-  private static boolean hasAWoodenLeg;
 
-  public Pirate() {
+  private boolean hasAWoodenLeg;
+  public Pirate(String name, int amountOfGold) {
     this.name = name;
     this.amountOfGold = amountOfGold;
     this.healthPoints = 10;
+    this.isACaptain = false;
+    this.hasAWoodenLeg = false;
+  }
+
+  public Pirate(String name, int amountOfGold, boolean isACaptain, boolean hasAWoodenLeg) {
+    this.name = name;
+    this.amountOfGold = amountOfGold;
+    this.healthPoints = 10;
+    this.isACaptain = isACaptain;
+    this.hasAWoodenLeg = hasAWoodenLeg;
   }
 
   public void work() {
-    if (this.isACaptain) {
+    if (isACaptain) {
       amountOfGold += 10;
       healthPoints -= 5;
     } else {
@@ -42,7 +53,7 @@ public class Pirate {
   }
 
   public void party() {
-    if (this.isACaptain) {
+    if (isACaptain) {
       healthPoints += 10;
     } else {
       healthPoints++;
@@ -50,50 +61,30 @@ public class Pirate {
   }
 
   public String toString() {
-    if (this.hasAWoodenLeg) {
-      return "Hello, I'm Jack. I have a wooden leg and 20 golds.";
+    if (hasAWoodenLeg) {
+      return "Hello, I'm" + this.name + ". I have a wooden leg and" + this.amountOfGold +" golds.";
     } else {
-      return "Hello, I'm Jack. I still have my real legs and 20 golds.";
+      return "Hello, I'm" + this.name + ". I still have my real legs and" + this.amountOfGold + " golds.";
     }
   }
 
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public void setAmountOfGold(int amountOfGold) {
-    this.amountOfGold = amountOfGold;
-  }
-
-  public void setHealthPoints(int healthPoints) {
-    this.healthPoints = healthPoints;
-  }
-
-  public void setACaptain(boolean ACaptain) {
-    isACaptain = ACaptain;
-  }
-
-  public void setHasAWoodenLeg(boolean hasAWoodenLeg) {
-    this.hasAWoodenLeg = hasAWoodenLeg;
+  public boolean isPoor() {
+    return hasAWoodenLeg && amountOfGold < 15;
   }
 
   public String getName() {
     return name;
   }
 
-  public static int getAmountOfGold() {
+  public int getAmountOfGold() {
     return amountOfGold;
+  }
+
+  public boolean isACaptain() {
+    return this.isACaptain;
   }
 
   public int getHealthPoints() {
     return healthPoints;
-  }
-
-  public boolean isACaptain() {
-    return isACaptain;
-  }
-
-  public static boolean hasAWoodenLeg() {
-    return hasAWoodenLeg;
   }
 }
