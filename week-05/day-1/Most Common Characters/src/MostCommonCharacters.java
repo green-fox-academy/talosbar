@@ -15,9 +15,8 @@ public class MostCommonCharacters {
     List<String> lines = getFileContent(fileName);
 
     HashMap<Character, Integer> countCharacters = countCharacters(lines);
-    HashMap<Character, Integer> mostCommonCharacters = getTopTwoPair(countCharacters);
 
-    return mostCommonCharacters;
+    return getTopTwoPair(countCharacters);
   }
 
   private static List<String> getFileContent(String fileName) {
@@ -51,7 +50,6 @@ public class MostCommonCharacters {
         if (countCharacters.containsKey(character)) {
           counter = countCharacters.get(character) + 1;
         }
-//          int counter = countCharacters.getOrDefault(character, 0) + 1;
         countCharacters.put(character, counter);
       }
     }

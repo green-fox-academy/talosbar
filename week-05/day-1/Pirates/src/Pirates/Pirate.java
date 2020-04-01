@@ -20,12 +20,10 @@ public class Pirate {
 
   private String name;
   private int amountOfGold;
-
   private int healthPoints;
-
   private boolean isACaptain;
-
   private boolean hasAWoodenLeg;
+
   public Pirate(String name, int amountOfGold) {
     this.name = name;
     this.amountOfGold = amountOfGold;
@@ -62,7 +60,7 @@ public class Pirate {
 
   public String toString() {
     if (hasAWoodenLeg) {
-      return "Hello, I'm" + this.name + ". I have a wooden leg and" + this.amountOfGold +" golds.";
+      return "Hello, I'm" + this.name + ". I have a wooden leg and" + this.amountOfGold + " golds.";
     } else {
       return "Hello, I'm" + this.name + ". I still have my real legs and" + this.amountOfGold + " golds.";
     }
