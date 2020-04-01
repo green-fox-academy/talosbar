@@ -6,11 +6,11 @@
 public class IncrementElement {
   public static void main(String[] args) {
 
-    int[] newArray = {1, 2, 3, 4, 5};
+    int[] numbers = {1, 2, 3, 4, 5};
 
-    newArray[2]++;
+    numbers[2]++;
 
-    System.out.println(newArray[2]);
+    System.out.println(numbers[2]);
 
 
   }

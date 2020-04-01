@@ -11,8 +11,9 @@ public class AppendAFunc {
 
   public static void main(String[] args) {
     String typo = "Chinchill";
+    typo = appendAFuc(typo);
 
-    System.out.println(appendAFuc(typo));
+    System.out.println(typo);
 
   }
 
