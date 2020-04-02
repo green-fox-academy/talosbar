@@ -13,7 +13,7 @@ public class SumTest {
   @Test
   public void getSumWithEmptyList() {
     ArrayList<Integer> numbers = new ArrayList<>(Arrays.asList());
-    assertEquals(55, sum.getSum(numbers));
+    assertEquals(0, sum.getSum(numbers));
   }
 
   @Test
@@ -34,4 +34,15 @@ public class SumTest {
     assertEquals(0, sum.getSum(numbers));
   }
 
+  @Test
+  public void getSumWithPositiveAndNegativeElements() {
+    ArrayList<Integer> numbers = new ArrayList<>(Arrays.asList(2, -2, 4));
+    assertEquals(4, sum.getSum(numbers));
+  }
+
+  @Test
+  public void getSumWithOnlyNegativeElements() {
+    ArrayList<Integer> numbers = new ArrayList<>(Arrays.asList(-2, -2, -4));
+    assertEquals(-8, sum.getSum(numbers));
+  }
 }
