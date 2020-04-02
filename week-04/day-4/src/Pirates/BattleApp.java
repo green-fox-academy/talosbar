@@ -13,6 +13,15 @@ public class BattleApp {
     ship1.fillShip();
     ship2.fillShip();
 
-    ship1.getCrew().brawl(ship2.getCrew());
+    ship1.battle(ship2);
+
+    ship1.showState();
+    ship2.showState();
+
+    ship1.getCaptain().brawl(ship2.getCaptain());
+    ship1.getCaptain().howsItGoingMate();
+    System.out.println(ship2.getCaptain().hasAParrot());
+
+
   }
 }

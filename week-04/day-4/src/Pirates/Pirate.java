@@ -18,6 +18,7 @@ package Pirates;
 import java.util.Random;
 
 public class Pirate {
+
   enum State {
     AWAKE,
     ASLEEP,
@@ -25,18 +26,27 @@ public class Pirate {
   }
 
   private int consumedRum;
-
   private State state;
+  private boolean isACaptain;
+  private boolean hasAParrot;
 
   public Pirate(int consumedRum, State state) {
     this.consumedRum = consumedRum;
     this.state = state;
+    this.isACaptain = false;
+    this.hasAParrot = true;
+  }
+
+  public Pirate(int consumedRum, State state, boolean isACaptain) {
+    this.consumedRum = consumedRum;
+    this.state = state;
+    this.isACaptain = isACaptain;
+    this.hasAParrot = true;
   }
 
   public Pirate() {
     this(0, State.AWAKE);
   }
-
 
   public void drinkSomeRum() {
     consumedRum++;
@@ -59,6 +69,10 @@ public class Pirate {
     state = State.DEAD;
   }
 
+  public boolean isAlive() {
+    return state != State.DEAD;
+  }
+
   public void brawl(Pirate otherPirate) {
     Random random = new Random();
     int chance1 = random.nextInt(3);
@@ -73,23 +87,19 @@ public class Pirate {
     }
   }
 
-  public void setConsumedRum(int consumedRum) {
-    this.consumedRum = consumedRum;
-  }
-
   public int getConsumedRum() {
     return consumedRum;
-  }
-
-  public void setState(State state) {
-    this.state = state;
   }
 
   public State getState() {
     return state;
   }
 
+  public boolean isACaptain() {
+    return this.isACaptain;
+  }
+
   public boolean hasAParrot() {
-    return true;
+    return this.hasAParrot;
   }
 }

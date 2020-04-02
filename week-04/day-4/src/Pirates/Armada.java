@@ -21,11 +21,22 @@ public class Armada {
   public void fillArmada() {
     int numberOfShips = (int) (Math.random() * 100);
     for (int i = 0; i < numberOfShips; i++) {
-      armada.add(new Ship());
+      Ship ship = new Ship();
+      ship.fillShip();
+      armada.add(ship);
     }
   }
 
-  public void war(Armada otherArmada) {
-
+  public boolean war(Armada otherArmada) {
+    int i = 0;
+    int j = 0;
+    while (i < armada.size() && j < otherArmada.armada.size()) {
+      if (armada.get(i).battle(otherArmada.armada.get(j))) {
+        j++;
+      } else {
+        i++;
+      }
+    }
+    return i != armada.size();
   }
 }
