@@ -1,13 +1,13 @@
 package animal;
 
 public class Animal {
-  int hunger;
-  int thirst;
 
+  private int hunger;
+  private int thirst;
 
-  public Animal(int hunger, int thirst) {
-    this.hunger = hunger;
-    this.thirst = thirst;
+  public Animal() {
+    hunger = 50;
+    thirst = 50;
   }
 
   public void eat() {
@@ -23,4 +23,7 @@ public class Animal {
     thirst++;
   }
 
+  public String toString() {
+    return "I have " + thirst + "thirst points and " + hunger + " hunger points";
+  }
 }

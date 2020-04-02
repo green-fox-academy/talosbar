@@ -11,7 +11,7 @@ package animal;
 public class Main {
   public static void main (String[] args) {
 
-    Animal animal = new Animal(50, 50);
+    Animal animal = new Animal();
     animal.eat();
     animal.drink();
     animal.play();
