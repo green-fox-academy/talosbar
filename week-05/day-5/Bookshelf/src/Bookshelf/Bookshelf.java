@@ -60,6 +60,16 @@ public class Bookshelf {
     return maxEntry.getKey();
   }
 
+  public String getTheLongestBook() {
+    Book longestBook = books.get(0);
+    for (Book book : books) {
+      if (book.getNumberOfPages() > longestBook.getNumberOfPages()) {
+        longestBook = book;
+      }
+    }
+    return longestBook.getTitle();
+  }
+
   public void printBooks() {
     for (Book book : books) {
       System.out.println(book.getBookInfo() + ", the number of pages of this book is: " + book.getNumberOfPages() + ", its weight is: " + book.weight + ".");

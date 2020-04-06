@@ -16,5 +16,6 @@ public class Main {
     bookshelf.printBooks();
     System.out.println(bookshelf.getLightestAuthor());
     System.out.println(bookshelf.getMaxAuthor());
+    System.out.println(bookshelf.getTheLongestBook());
   }
 }
