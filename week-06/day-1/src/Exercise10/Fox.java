@@ -2,7 +2,7 @@
 
 package Exercise10;
 
-public class Fox {
+public abstract class Fox {
 
   private String name;
   private String color;
