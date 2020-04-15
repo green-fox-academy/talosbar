@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Exercise3 {
+public class SquaredValueIsMoreThenTwenty {
   public static void main(String[] args) {
 
     List<Integer> numbers = Arrays.asList(3, 9, 2, 8, 6, 5);

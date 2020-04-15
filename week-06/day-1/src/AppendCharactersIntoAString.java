@@ -3,7 +3,7 @@
 import java.util.Arrays;
 import java.util.List;;
 
-public class Exercise8 {
+public class AppendCharactersIntoAString {
   public static void main(String[] args) {
 
     List<Character> characters = Arrays.asList('a', 'b', 'l', 'a', 'k');
