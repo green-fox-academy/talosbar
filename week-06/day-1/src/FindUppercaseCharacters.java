@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Exercise6 {
+public class FindUppercaseCharacters {
   public static void main(String[] args) {
 
     String myString = "Ablak Zsiráf";

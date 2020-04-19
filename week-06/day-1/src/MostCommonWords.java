@@ -6,16 +6,28 @@
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Comparator;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Exercise11 {
+public class MostCommonWords {
   public static void main(String[] args) {
     String fileName = "assets/wikiArticle.txt";
 
-    try (Stream<String> stream = Files.lines(Paths.get(fileName))) {
-
-      stream.forEach(System.out::println);
-
+    Map<Object, Long> mostCommonWords;
+    try {
+      mostCommonWords = Files.lines(Paths.get(fileName))
+          .flatMap(line -> Stream.of(line.split(" ")))
+          .map(string -> string.replaceAll("[\\W]|_", ""))
+          .filter(string -> string.length() >= 2)
+          .collect(Collectors.groupingBy(string -> string, Collectors.counting()))
+          .entrySet().stream()
+          .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+          .limit(100)
+          .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+      System.out.println(mostCommonWords);
     } catch (IOException e) {
       System.out.println("The file doesn't exist");
       System.exit(-1);

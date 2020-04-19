@@ -1,6 +1,6 @@
 //Create a Fox class with 3 properties:name, color and age Fill a list with at least 5 foxes and:
 
-package Exercise10;
+package OOWithStreams;
 
 public class Fox {
 

@@ -1,4 +1,4 @@
-package Exercise10;
+package OOWithStreams;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 public class Streams {
   public static void main(String[] args) {
 
-    List<Fox> foxes = new ArrayList<Fox>();
+    List<Fox> foxes = new ArrayList<>();
     foxes.add(new Fox("Foxy", "green", 3));
     foxes.add(new Fox("Vuk", "red", 1));
     foxes.add(new Fox("Karak", "grey", 8));

@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class Exercise9 {
+public class FrequencyOfCharacters {
   public static void main(String[] args) {
 
     String myString = "Ablak Zsiráf könyv";
