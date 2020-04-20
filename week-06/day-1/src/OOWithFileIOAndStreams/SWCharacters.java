@@ -53,47 +53,35 @@ public class SWCharacters {
     return null;
   }
 
-  public Integer getMassAsNumber() {
+  public Double getMassAsNumber() {
+    if (mass.contains(",")) {
+      mass = mass.replace(",", "");
+    }
     if (!mass.equals("unknown")) {
-      return Integer.parseInt(mass);
+      return Double.parseDouble(mass);
     }
     return null;
   }
 
-
-//  public Integer getMassAsNumber() {
-//    if (mass.equals("unknown")) {
-//      mass.replace("unknown", "0");
-//    }
-//    Integer.parseInt(mass);
-//    return Integer.valueOf(mass);
-//  }
-
-//  public Integer getMassAsNumber() {
-//    try {
-//      Integer.parseInt(mass);
-//    }
-//    catch (NumberFormatException e) {
-//      throw new RuntimeException("The string can't be converted into a number");
-//    }
-//    return Integer.valueOf(mass);
-//  }
   public Integer getAge() {
-    if (!mass.equals("unknown")) {
+    if (birthYear.contains("BBY")) {
+      birthYear = birthYear.replace("BBY", "");
+    }
+    if (!birthYear.equals("unknown")) {
       return 2020 - Integer.parseInt(birthYear);
     }
     return null;
-  }
-
-  public String getGender() {
-    return gender;
   }
 
   public String toString() {
     return this.name + " is " + this.height + " cm height, her/his mass is " + this.mass + " kg, her/his hair color is " + this.hairColor + ", her/his skin color is " + this.skinColor + ", her/his eye color is " + this.eyeColor + ", her/his birth year is " + this.birthYear + ", and her/his gender is " + this.gender + ".";
   }
 
-  public static String getName() {
+  public String getGender() {
+    return gender;
+  }
+
+  public String getName() {
     return name;
   }
 
