@@ -63,18 +63,10 @@ public class SWCharacters {
     return null;
   }
 
-  public Integer getAge() {
-    if (birthYear.contains("BBY")) {
-      birthYear = birthYear.replace("BBY", "");
-    }
-    if (!birthYear.equals("unknown")) {
-      return 2020 - Integer.parseInt(birthYear);
-    }
-    return null;
-  }
-
   public String toString() {
-    return this.name + " is " + this.height + " cm height, her/his mass is " + this.mass + " kg, her/his hair color is " + this.hairColor + ", her/his skin color is " + this.skinColor + ", her/his eye color is " + this.eyeColor + ", her/his birth year is " + this.birthYear + ", and her/his gender is " + this.gender + ".";
+    return this.name + " is " + this.height + " cm height, her/his mass is " + this.mass + " kg, her/his hair color is "
+        + this.hairColor + ", her/his skin color is " + this.skinColor + ", her/his eye color is "
+        + this.eyeColor + ", her/his birth year is " + this.birthYear + ", and her/his gender is " + this.gender + ".";
   }
 
   public String getGender() {
@@ -85,15 +77,7 @@ public class SWCharacters {
     return name;
   }
 
-  public String getHairColor() {
-    return hairColor;
-  }
-
-  public String getSkinColor() {
-    return skinColor;
-  }
-
-  public String getEyeColor() {
-    return eyeColor;
+  public String getBirthYear() {
+    return birthYear;
   }
 }
