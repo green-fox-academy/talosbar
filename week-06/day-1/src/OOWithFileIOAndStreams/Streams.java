@@ -12,10 +12,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
-import java.util.stream.Collectors;
 
 public class Streams {
-  public static String main(String[] args) {
+  public static void main(String[] args) {
 
     List<SWCharacters> listOfSWCharacters = new ArrayList<>();
 
@@ -74,35 +73,35 @@ public class Streams {
 //The age groups are: "below 21", "between 21 and 40", "above 40" and "unknown"
 //The result should be a Map<String, Map<String, Integer>>
 
-    Map<String, Map<String, Integer>> mapOfGendersByAge = listOfSWCharacters.stream()
-        .collect(groupingBy(SWCharacters::groupingByGender,
-            groupingBy(SWCharacters::groupingByAge, counting())));
+    Map<String, Map<String, Long>> mapOfGendersByAge = listOfSWCharacters.stream()
+        .collect(groupingBy(Streams::groupingByGender,
+            groupingBy(Streams::groupingByAge, counting())));
 
     mapOfGendersByAge.entrySet()
         .forEach(System.out::println);
+  }
 
-    public static String groupingByAge (SWCharacters swCharacter){
-      String birthYear = swCharacter.getBirthYear().replace("BBY", "");
-      if (birthYear.equals("unknown")) {
-        return birthYear;
+  public static String groupingByAge(SWCharacters swCharacter) {
+    String birthYear = swCharacter.getBirthYear().replace("BBY", "");
+    if (birthYear.equals("unknown")) {
+      return birthYear;
+    } else {
+      double year = Double.parseDouble(birthYear);
+      if (year < 21) {
+        return "below 21";
+      } else if (year > 40) {
+        return "above 40";
       } else {
-        int year = Integer.parseInt(birthYear);
-        if (year < 21) {
-          return "below 21";
-        } else if (year > 40) {
-          return "above 40";
-        } else {
-          return "between 21 and 40";
-        }
+        return "between 21 and 40";
       }
     }
+  }
 
-    public static String groupingByGender (SWCharacters swCharacter){
-      if (!swCharacter.getGender().equals("male") && !swCharacter.getGender().equals(("female"))) {
-        return "other";
-      } else {
-        return swCharacter.getGender();
-      }
+  public static String groupingByGender(SWCharacters swCharacter) {
+    if (!swCharacter.getGender().equals("male") && !swCharacter.getGender().equals(("female"))) {
+      return "other";
+    } else {
+      return swCharacter.getGender();
     }
   }
 }
