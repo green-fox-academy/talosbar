@@ -12,6 +12,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 public class Streams {
   public static String main(String[] args) {
@@ -39,6 +40,7 @@ public class Streams {
       swCharacter.setGender(result[7]);
       listOfSWCharacters.add(swCharacter);
     }
+
 //    System.out.println("The Star Wars character are the following");
 //    for (SWCharacters swCharacter : listOfSWCharacters) {
 //      System.out.println(swCharacter);
