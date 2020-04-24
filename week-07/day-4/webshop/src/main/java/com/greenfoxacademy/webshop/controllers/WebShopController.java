@@ -1,35 +1,73 @@
 package com.greenfoxacademy.webshop.controllers;
 
 import com.greenfoxacademy.webshop.models.ShopItem;
+import com.greenfoxacademy.webshop.service.WebShopService;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class WebShopController {
 
-  List<ShopItem> shopItemsList;
+  private WebShopService webShopService;
 
-  public WebShopController() {
-    this.shopItemsList = Arrays.asList(
-        new ShopItem("Running shoes", "dress", "Nike running shoes for every day sport", 1000, 5),
-        new ShopItem("Printer", "device", "Some HP printer that will print pages", 3000, 2),
-        new ShopItem("Coca cola", "food", "0.5l standard coke", 25, 0),
-        new ShopItem("Wokin", "food", "Chicken with fried rice and WOKIN sauce", 119, 100),
-        new ShopItem("T-shirt", "dress", "Blue with a corgi", 300, 1)
-    );
-  }
-
-  @GetMapping("main")
-  public String getIndex() {
-    return "index";
+  @Autowired
+  public WebShopController(WebShopService webShopService) {
+    this.webShopService = webShopService;
   }
 
   @GetMapping("")
   public String redirectToHomePage(Model model) {
-    model.addAttribute("items", shopItemsList);
+    model.addAttribute("items", webShopService.getShopItemsList());
     return "index";
   }
+
+  @GetMapping("/webshop")
+  @ResponseBody
+  public String greeting() {
+    return "Hello World";
+  }
+
+  @GetMapping("/only-available")
+  public String getOnlyAvailableItems(Model model) {
+    model.addAttribute("items", webShopService.getOnlyAvailableItems());
+    return "index";
+  }
+
+  @GetMapping("/cheapest-first")
+  public String getCheapestItemFirst(Model model) {
+    model.addAttribute("items", webShopService.getShopItemsListOrderedByPrice());
+    return "index";
+  }
+
+  @GetMapping("/contains-nike")
+  public String getItemsWhichDescriptionContainsNike(Model model) {
+    model.addAttribute("items", webShopService.getItemsWhichDescriptionContainsNike());
+    return "index";
+  }
+
+  @GetMapping("/average-stock")
+  public String getAverageStock(Model model) {
+    model.addAttribute("averageOfStock", webShopService.getAverageStock());
+    return "averageStock";
+  }
+
+  @GetMapping("/most-expensive-available")
+  public String getMostExpensiveItem(Model model) {
+    model.addAttribute("items", webShopService.getMostExpensiveItem());
+    return "index";
+  }
+
+  @PostMapping("/search")
+  public String searchByInput(String searchInput, Model model) {
+    model.addAttribute("items", webShopService.getSearchedItems(searchInput));
+    return "index";
+  }
+
 }

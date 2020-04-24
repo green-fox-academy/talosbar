@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:href="http://www.w3.org/1999/xhtml">
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -7,6 +7,19 @@
     <link rel="stylesheet" href="/styles.css"/>
 </head>
 <body>
+<h1><a href="/webshop">My Shop</a></h1>
+<div id="navigationToFilteredDates">
+    <a href="/only-available">Only available</a>
+    <a href="/cheapest-first">Cheapest first</a>
+    <a href="/contains-nike">Contains nike</a>
+    <a href="/average-stock">Average stock</a>
+    <a href="/most-expensive-available">Most expensive available</a>
+</div>
+<form class="search" action="/search" method="POST">
+    <label>Search for:</label>
+    <input type="text" name="searchInput" placeholder="...something like nike">
+    <button>Search</button>
+</form>
 <table>
     <thead>
     <tr>
@@ -20,7 +33,10 @@
     <tbody>
     <tr th:each="item : ${items}">
         <td th:text="${item.getName()}"></td>
-
+        <td th:text="${item.getType()}"></td>
+        <td th:text="${item.getDescription()}"></td>
+        <td th:text="${item.getPrice()} + ' Kč'"></td>
+        <td th:text="${item.getQuantityOfStock()}"></td>
     </tr>
     </tbody>
 </table>
