@@ -11,10 +11,10 @@
     </ul>
     <img src="assets/greenfox.png" alt="Fox">
     <p th:text="'This is ' + ${name} + '. Currently living on ' + ${food} + ' and ' + ${drink} + '.' +
-    ${gender}=='male' ? 'He ' : 'She ' + 'knows ' + ${listOfTricks.size()} + ' tricks.'"></p>
+    ( ${gender}=='male' ? 'He ' : 'She ') + 'knows ' + ${listOfTricks.size()} + ' tricks.'"></p>
     <h1>Known tricks</h1>
     <ul>
-        <li th:if="${listOfTricks.size() > 0 ? ${listOfTricks} : 'You know no tricks, yet. Go and learn some.'"></li>
+        <li th:if="${listOfTricks.size()} > 0 ? ${listOfTricks} : 'You know no tricks, yet. Go and learn some.'"></li>
     </ul>
 </div>
 <h2 th:unless="${isFox}">You have provided a name that has not been used before, add it as a new one!</h2>

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ProgrammerFoxController {
@@ -34,8 +33,8 @@ public class ProgrammerFoxController {
     return "login";
   }
 
-  @PostMapping("/login}")
-  public String searchByInput(@RequestParam(required = true) String loginInput, Model model) {
+  @PostMapping("/login")
+  public String searchByInput(String loginInput, Model model) {
     Optional<Fox> foxOption = foxList.stream()
         .filter(fox -> fox.getName().toLowerCase().equals(loginInput.toLowerCase()))
         .findFirst();
