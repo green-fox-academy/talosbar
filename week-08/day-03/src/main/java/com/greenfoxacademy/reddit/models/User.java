@@ -23,7 +23,8 @@ public class User {
   private long id;
   private String name;
 
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
+  @OneToMany(fetch = FetchType.LAZY,
+      mappedBy = "user", cascade = CascadeType.ALL)
   @JsonIgnore
   private List<Post> posts;
 
