@@ -2,6 +2,7 @@ package com.greenfoxacademy.reddit.services;
 
 import com.greenfoxacademy.reddit.models.User;
 import com.greenfoxacademy.reddit.repositories.UserRepository;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +20,14 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public List<User> returnAllUser() {
-    return null;
+    List<User> users = new ArrayList<>();
+    userRepository.findAll().forEach(users::add);
+    return users;
   }
 
   @Override
   public void addUser(User user) {
-
+    userRepository.save(user);
   }
 
   @Override

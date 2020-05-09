@@ -1,6 +1,5 @@
 package com.greenfoxacademy.reddit.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -24,8 +23,7 @@ public class User {
   private String name;
 
   @OneToMany(fetch = FetchType.LAZY,
-      mappedBy = "user", cascade = CascadeType.ALL)
-  @JsonIgnore
+      mappedBy = "creator", cascade = CascadeType.ALL)
   private List<Post> posts;
 
   public User() {

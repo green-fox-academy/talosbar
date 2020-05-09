@@ -9,8 +9,18 @@ import org.springframework.stereotype.Service;
 public interface PostService {
 
   List<Post> returnAllPosts();
+
+  List<Post> returnFirstTenPostsDescByVotes();
+
   void addPost(Post post);
+
   void addUserToPost(User user, Post post);
+
   Post findById(long id);
-  List<Post> queries();
+
+  void incrementVoteField(long id);
+
+  void decreaseVoteField(long id);
+
+  void updatePostVoteField(String option, long id);
 }

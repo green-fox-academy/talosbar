@@ -30,17 +30,18 @@ public class PostServiceImpl implements PostService {
   }
 
   @Override
+  public List<Post> returnFirstTenPostsDescByVotes() {
+    return postRepository.getFirstTenPostsByDescendingByVotes();
+  }
+
+  @Override
   public void addPost(Post post) {
     postRepository.save(post);
   }
 
   @Override
   public void addUserToPost(User user, Post post) {
-    post.setUser(user);
-    List<Post> userPosts = user.getPosts();
-    userPosts.add(post);
-    user.setPosts(userPosts);
-    userRepository.save(user);
+    post.setCreator(user);
     postRepository.save(post);
   }
 
@@ -55,9 +56,34 @@ public class PostServiceImpl implements PostService {
   }
 
   @Override
-  public List<Post> queries() {
-    List<Post> posts = new ArrayList<>();
-    posts.addAll(postRepository.findAllById());
-    return posts;
+  public void incrementVoteField(long id) {
+    Optional<Post> optionalPost = postRepository.findById(id);
+    if (optionalPost.isPresent()) {
+      Post post = optionalPost.get();
+      post.setVote(post.getVote() + 1);
+      postRepository.save(post);
+    }
+  }
+
+  @Override
+  public void decreaseVoteField(long id) {
+    Optional<Post> optionalPost = postRepository.findById(id);
+    if (optionalPost.isPresent()) {
+      Post post = optionalPost.get();
+      post.setVote(post.getVote() - 1);
+      postRepository.save(post);
+    }
+  }
+
+  @Override
+  public void updatePostVoteField(String option, long id) {
+    switch (option) {
+      case "+":
+        incrementVoteField(id);
+        break;
+      case "-":
+        decreaseVoteField(id);
+        break;
+    }
   }
 }

@@ -26,7 +26,8 @@ public class RedditApplication implements CommandLineRunner {
 
   @Override
   public void run(String... args) throws Exception {
-    postRepository.save(new Post("Hibernate", "https://en.wikipedia.org/wiki/Hibernate_(framework)"));
+    postRepository
+        .save(new Post("Hibernate", "https://en.wikipedia.org/wiki/Hibernate_(framework)"));
     postRepository.save(new Post("JPA", "https://en.wikipedia.org/wiki/Java_Persistence_API"));
     postRepository.save(new Post("Query methods",
         "https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods"));
