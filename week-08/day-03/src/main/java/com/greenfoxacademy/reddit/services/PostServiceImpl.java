@@ -86,4 +86,33 @@ public class PostServiceImpl implements PostService {
         break;
     }
   }
+
+  @Override
+  public List<Integer> getHowManyPageDoWeNeed() {
+    List<Integer> pageNumbers = new ArrayList<>();
+    Integer sizeOfPosts = postRepository.getAllPostsWithDescendingOrder().size();
+    Integer pageNumber = 1;
+    pageNumbers.add(pageNumber);
+    for (int i = 1; i <= sizeOfPosts; i++) {
+      if (i % 10 == 0) {
+        pageNumber++;
+        pageNumbers.add(pageNumber);
+      }
+    }
+    return pageNumbers;
+  }
+
+  @Override
+  public List<Post> getPostsForHomePage() {
+    return postRepository.getFirstTenPostsByDescendingByVotes();
+  }
+
+  @Override
+  public List<Post> getPostsWithPageNumber(Integer pageNumber) {
+    if (pageNumber == 1) {
+      return postRepository.getFirstTenPostsByDescendingByVotes();
+    } else {
+      return postRepository.getAllPostsWithDescendingOrderWithLimitTenAndSelectedOffset((pageNumber - 1) * 10);
+    }
+  }
 }

@@ -21,6 +21,8 @@ public class User {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
   private String name;
+  private String password;
+  private boolean active;
 
   @OneToMany(fetch = FetchType.LAZY,
       mappedBy = "creator", cascade = CascadeType.ALL)
@@ -30,8 +32,9 @@ public class User {
     this.posts = new ArrayList<>();
   }
 
-  public User(String name) {
+  public User(String name, String password) {
     this.name = name;
+    this.password = password;
     this.posts = new ArrayList<>();
   }
 }

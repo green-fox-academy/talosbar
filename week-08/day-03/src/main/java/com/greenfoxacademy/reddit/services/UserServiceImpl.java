@@ -39,4 +39,30 @@ public class UserServiceImpl implements UserService {
     }
     return user;
   }
+
+  public boolean validateUserData(String name, String password) {
+    Optional<User> foundUser = Optional.ofNullable(userRepository.getUserByName(name));
+    if (foundUser.isPresent()) {
+      User user = foundUser.get();
+      if (user.getName().equals(name) && user.getPassword().equals(password)) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  public void setUserActive(String name) {
+    Optional<User> optionalUser = Optional.ofNullable(userRepository.getUserByName(name));
+    if (optionalUser.isPresent()) {
+      User user = optionalUser.get();
+      user.setActive(true);
+      userRepository.save(user);
+    }
+  }
+
+  public void setActiveUserToInactive() {
+    User user = userRepository.getActiveUser();
+    user.setActive(false);
+    userRepository.save(user);
+  }
 }

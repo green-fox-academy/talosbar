@@ -11,4 +11,11 @@ public interface PostRepository extends CrudRepository<Post, Long> {
 
   @Query(value = "SELECT * FROM post ORDER BY vote DESC LIMIT 10", nativeQuery = true)
   List<Post> getFirstTenPostsByDescendingByVotes();
+
+  @Query(value = "SELECT * FROM post ORDER BY vote DESC", nativeQuery = true)
+  List<Post> getAllPostsWithDescendingOrder();
+
+  @Query(value = "SELECT * FROM post ORDER BY vote DESC LIMIT 10 OFFSET ?1",
+      nativeQuery = true)
+  List<Post> getAllPostsWithDescendingOrderWithLimitTenAndSelectedOffset(Integer offset);
 }

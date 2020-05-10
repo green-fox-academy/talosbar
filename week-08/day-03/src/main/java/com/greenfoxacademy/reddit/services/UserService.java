@@ -9,4 +9,7 @@ public interface UserService {
   List<User> returnAllUser();
   void addUser(User user);
   User findById(long id);
+  boolean validateUserData(String name, String password);
+  void setUserActive(String name);
+  void setActiveUserToInactive();
 }

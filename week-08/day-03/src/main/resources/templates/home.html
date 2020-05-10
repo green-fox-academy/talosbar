@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trending posts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/submit">Submit</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="/register">Register<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="/login">Login</a>
+            <a class="nav-item nav-link" href="/logout">Logout</a>
+        </div>
+    </div>
+</nav>
+<br>
+<h1>Trending posts</h1>
+<br>
+<table class="table">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">Vote</th>
+        <th scope="col">Like</th>
+        <th scope="col">Dislike</th>
+        <th scope="col">Title</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="post : ${posts}" th:object="${post}">
+        <th scope="row" th:text="*{vote}"></th>
+        <td><a th:href="@{|/+/${post.id}|}">+</a></td>
+        <td><a th:href="@{|/-/${post.id}|}">-</a></td>
+        <td><a th:href="*{url}" th:text="*{title}"></a></td>
+    </tr>
+    </tbody>
+</table>
+<div class="pagination">
+    <a th:each="page : ${pageNumbers}" th:href="@{|/home/${page}|}"
+       th:text="${page}"></a>
+</div>
+<script src="/webjars/jquery/3.3.1/jquery.min.js"></script>
+<script src="/webjars/bootstrap/4.3.1/js/bootstrap.bundle.js"></script>
+</body>
+</html>

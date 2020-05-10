@@ -23,4 +23,10 @@ public interface PostService {
   void decreaseVoteField(long id);
 
   void updatePostVoteField(String option, long id);
+
+  List<Integer> getHowManyPageDoWeNeed();
+
+  List<Post> getPostsForHomePage();
+
+  List<Post> getPostsWithPageNumber(Integer pageNumber);
 }
