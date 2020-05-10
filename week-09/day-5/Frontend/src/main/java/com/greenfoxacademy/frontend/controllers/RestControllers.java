@@ -59,7 +59,7 @@ public class RestControllers {
 
   @PostMapping("/dountil/{action}")
   public ResponseEntity<?> doUntil(@PathVariable String action, @RequestBody DoUntil doUntil) {
-    if (doUntil == null) {
+    if (doUntil.getUntil() == null) {
       return ResponseEntity.badRequest().body(new Error("Please provide a number!"));
     }
     doUntil.setResultByAction(action);

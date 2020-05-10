@@ -3,10 +3,10 @@ package com.greenfoxacademy.frontend.models;
 import java.util.stream.IntStream;
 
 public class DoUntil {
-  private int until;
-  private int result;
+  private Integer until;
+  private Integer result;
 
-  public int getUntil() {
+  public Integer getUntil() {
     return until;
   }
 
@@ -14,7 +14,7 @@ public class DoUntil {
     this.until = until;
   }
 
-  public int getResult() {
+  public Integer getResult() {
     return result;
   }
 
