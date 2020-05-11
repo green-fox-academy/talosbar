@@ -6,6 +6,9 @@ public class DoUntil {
   private Integer until;
   private Integer result;
 
+  public DoUntil() {
+  }
+
   public Integer getUntil() {
     return until;
   }

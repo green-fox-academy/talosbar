@@ -5,6 +5,7 @@
     <title>Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="../static/main.css">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -19,8 +20,8 @@
         </div>
     </div>
 </nav>
-<br>
-<h1>Login with username</h1><br>
+<div class="container">
+<h1>Login with username</h1>
 <form class="title" action="/login" method="POST">
     <div class="form-row">
         <div class="col-7">
@@ -34,6 +35,7 @@
 </form>
 <p th:if="${invalidUserdata} != null"
    th:text="'Invalid userdata!'"></p>
+</div>
 <script src="/webjars/jquery/3.3.1/jquery.min.js"></script>
 <script src="/webjars/bootstrap/4.3.1/js/bootstrap.bundle.js"></script>
 </body>
