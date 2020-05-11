@@ -29,4 +29,6 @@ public interface PostService {
   List<Post> getPostsForHomePage();
 
   List<Post> getPostsWithPageNumber(Integer pageNumber);
+
+  void delete(Long id);
 }

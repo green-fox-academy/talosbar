@@ -9,8 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepository extends CrudRepository<User, Long> {
 
-  @Query(value="SELECT * FROM User WHERE name = :name LIMIT 1", nativeQuery = true)
-  User getUserByName(String name);
+  Optional<User> findByName(String name);
 
   @Query("SELECT u FROM User u WHERE u.active  = true")
   User getActiveUser();

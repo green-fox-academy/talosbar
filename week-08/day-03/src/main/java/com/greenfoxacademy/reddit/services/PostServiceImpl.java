@@ -115,4 +115,9 @@ public class PostServiceImpl implements PostService {
       return postRepository.getAllPostsWithDescendingOrderWithLimitTenAndSelectedOffset((pageNumber - 1) * 10);
     }
   }
+
+  @Override
+  public void delete(Long id) {
+    postRepository.delete(findById(id));
+  }
 }

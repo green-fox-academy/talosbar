@@ -41,18 +41,53 @@ public class UserServiceImpl implements UserService {
   }
 
   public boolean validateUserData(String name, String password) {
-    Optional<User> foundUser = Optional.ofNullable(userRepository.getUserByName(name));
+    Optional<User> foundUser = userRepository.findByName(name);
     if (foundUser.isPresent()) {
       User user = foundUser.get();
       if (user.getName().equals(name) && user.getPassword().equals(password)) {
-        return false;
+        return true;
       }
     }
-    return true;
+    return false;
+  }
+
+  @Override
+  public boolean isUserValid(User user, String passwordVerification) {
+    if (isPasswordValid(user, passwordVerification) && isNameValid(user)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  @Override
+  public boolean isUserInvalid(User user, String passwordVerification) {
+    if (!isPasswordValid(user, passwordVerification) && !isNameValid(user)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  @Override
+  public boolean isPasswordValid(User user, String passwordVerification) {
+    if (user.getPassword().equals(passwordVerification)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public boolean isNameValid(User user) {
+    if (!userRepository.findByName(user.getName()).isPresent()) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   public void setUserActive(String name) {
-    Optional<User> optionalUser = Optional.ofNullable(userRepository.getUserByName(name));
+    Optional<User> optionalUser = userRepository.findByName(name);
     if (optionalUser.isPresent()) {
       User user = optionalUser.get();
       user.setActive(true);
@@ -64,5 +99,19 @@ public class UserServiceImpl implements UserService {
     User user = userRepository.getActiveUser();
     user.setActive(false);
     userRepository.save(user);
+  }
+
+  @Override
+  public boolean isActiveAnyUser() {
+    if (userRepository.getActiveUser() == null) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  @Override
+  public void delete(Long id) {
+    userRepository.delete(findById(id));
   }
 }
