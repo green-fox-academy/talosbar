@@ -1,16 +1,33 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Save link</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
 </head>
 <body>
-<form action="/save-link" method="POST">
-    <label>URL</label><br>
-    <input type="text" name="urlInput"><br><br>
-    <label>Alias</label><br>
-    <input type="text" name="aliasInput"><br><br>
-    <button type="submit">Submit</button>
-</form>
+<div class="container">
+    <form class="title" action="/save-link" method="POST">
+        <div class="form-row">
+            <div class="col-7">
+                <label>URL</label>
+                <input type="text" class="form-control" name="url">
+            </div>
+            <div class="col-7">
+                <label>Alias</label>
+                <input type="text" class="form-control" name="alias">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-outline-danger">Submit</button>
+    </form>
+    <p th:if="${aliasExistsAlready}"
+       th:text="'Your alias is already in use!'" style="color:red;"></p>
+    <p th:unless="${!aliasExistsAlready}"
+       th:each="post : ${links}" th:object="${link}"
+       th:text="'Your URL is aliased to ' + *{alias} + 'and your secret code is ' + *{secretCode} + '.'"></p>
+</div>
+<script src="/webjars/jquery/3.3.1/jquery.min.js"></script>
+<script src="/webjars/bootstrap/4.3.1/js/bootstrap.bundle.js"></script>
 </body>
 </html>

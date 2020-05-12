@@ -2,7 +2,6 @@ package com.greenfoxacademy.reddit.controllers;
 
 import com.greenfoxacademy.reddit.models.Post;
 import com.greenfoxacademy.reddit.models.User;
-import com.greenfoxacademy.reddit.models.Error;
 import com.greenfoxacademy.reddit.services.PostService;
 import com.greenfoxacademy.reddit.services.PostServiceImpl;
 import com.greenfoxacademy.reddit.services.UserService;
@@ -106,7 +105,7 @@ public class MainController {
   public String getUserDatasFromLoginView(String username, String password, Model model) {
     if (userService.validateUserData(username, password)) {
       userService.setUserActive(username);
-      return "redirect:/list";
+      return "redirect:/home";
     }
     return "redirect:/login?invalidUserdata=true";
   }
