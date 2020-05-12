@@ -1,5 +1,6 @@
 package com.greenfoxacademy.urlaliaser.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,13 +19,17 @@ public class Link {
 
   private String url;
   private String alias;
+
+  @JsonIgnore
   private Integer secretCode;
+
   private int hitCount;
 
   public Link() {
   }
 
-  public Link(String url, String alias) {
+  public Link(long id, String url, String alias) {
+    this.id = id;
     this.url = url;
     this.alias = alias;
     this.secretCode = (int) (Math.random() * 9000) + 1000;
