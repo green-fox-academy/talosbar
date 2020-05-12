@@ -59,7 +59,6 @@ public class WebShopService {
         .collect(Collectors.toList());
   }
 
-
   public List<ShopItem> getSearchedItems(String searchInput) {
     return shopItemsList.stream()
         .filter(item -> item.getName().toLowerCase().contains(searchInput.toLowerCase()) ||
