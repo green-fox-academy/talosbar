@@ -10,7 +10,8 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="/submit">Submit</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -21,20 +22,20 @@
     </div>
 </nav>
 <div class="container">
-<h1>Login with username</h1>
-<form class="title" action="/login" method="POST">
-    <div class="form-row">
-        <div class="col-7">
-            <input type="text" class="form-control" placeholder="Username">
+    <h1>Login with username</h1>
+    <p1 th:if="${invalidUserdata}" style="color: red">Your login datas are invalid!</p1>
+    <form class="title" action="/login" method="POST">
+        <div class="form-row">
+            <div class="col-7">
+                <input type="text" class="form-control" placeholder="Username">
+            </div>
+            <div class="col-7">
+                <input type="text" class="form-control" placeholder="Password">
+            </div>
         </div>
-        <div class="col-7">
-            <input type="text" class="form-control" placeholder="Password">
-        </div>
-    </div><br>
-    <button type="submit" class="btn btn-outline-danger">LOGIN</button>
-</form>
-<p th:if="${invalidUserdata} != null"
-   th:text="'Invalid userdata!'"></p>
+        <br>
+        <button type="submit" class="btn btn-outline-danger">LOGIN</button>
+    </form>
 </div>
 <script src="/webjars/jquery/3.3.1/jquery.min.js"></script>
 <script src="/webjars/bootstrap/4.3.1/js/bootstrap.bundle.js"></script>

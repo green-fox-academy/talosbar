@@ -52,8 +52,8 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public boolean isUserValid(User user, String passwordVerification) {
-    if (isPasswordValid(user, passwordVerification) && isNameValid(user)) {
+  public boolean isUserValid(User user) {
+    if (isPasswordValid(user) && isNameValid(user)) {
       return true;
     } else {
       return false;
@@ -61,8 +61,8 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public boolean isUserInvalid(User user, String passwordVerification) {
-    if (!isPasswordValid(user, passwordVerification) && !isNameValid(user)) {
+  public boolean isUserInvalid(User user) {
+    if (!isPasswordValid(user) && !isNameValid(user)) {
       return true;
     } else {
       return false;
@@ -70,8 +70,8 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public boolean isPasswordValid(User user, String passwordVerification) {
-    if (user.getPassword().equals(passwordVerification)) {
+  public boolean isPasswordValid(User user) {
+    if (!userRepository.findByPassword(user.getPassword()).isPresent()) {
       return true;
     } else {
       return false;

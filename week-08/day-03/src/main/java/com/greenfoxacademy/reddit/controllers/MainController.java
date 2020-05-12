@@ -7,17 +7,14 @@ import com.greenfoxacademy.reddit.services.PostServiceImpl;
 import com.greenfoxacademy.reddit.services.UserService;
 import com.greenfoxacademy.reddit.services.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class MainController {
@@ -49,7 +46,7 @@ public class MainController {
   @GetMapping("/{option}/{id}")
   public String manageVoting(@PathVariable String option, @PathVariable long id) {
     postService.updatePostVoteField(option, id);
-    return "redirect:/home";
+    return "home";
   }
 
   @GetMapping("/submit")
@@ -58,15 +55,21 @@ public class MainController {
   }
 
   @PostMapping("/submit")
-  public String createNewPost(@ModelAttribute("post") Post post) {
-    postService.addPost(post);
-    return "redirect:/home";
+  public String createNewPost(User user, @ModelAttribute
+      Post post) {  //hogyan irathatnam ki vele az eppen aktiv usert, es adhatnam hozza egyuttal a posthoz?
+    if (userService.isActiveAnyUser()) {
+      postService.addPost(post);
+      postService.addUserToPost(user, post);
+      return "redirect:/?noActiveUser=false&newPostAdded=true";
+    }
+    return "redirect:/?noActiveUser=true";
   }
 
   @GetMapping(value = "/register")
   public String getRegisterView(Model model,
                                 @RequestParam(required = false) Boolean passwordVerificationFailed,
-                                @RequestParam(required = false) Boolean usernameVerificationFailed) {
+                                @RequestParam(required = false)
+                                    Boolean usernameVerificationFailed) {
     model.addAttribute("newUser", new User());
     if (passwordVerificationFailed != null) {
       model.addAttribute("passwordVerificationFailed", passwordVerificationFailed);
@@ -78,60 +81,47 @@ public class MainController {
   }
 
   @PostMapping(value = "/register")
-  public String registerNewUser(@ModelAttribute User user, String passwordVerification) {
-    if (userService.isUserValid(user, passwordVerification)) {
+  public String registerNewUser(@ModelAttribute User user) {
+    if (userService.isUserValid(user)) {
       userService.addUser(user);
-      return "redirect:/login";
+      return "login";
     }
-    if (userService.isUserInvalid(user, passwordVerification)) {
-      return "redirect:/register?passwordVerificationFailed=true&usernameVerificationFailed=true";
-    } else if (!userService.isPasswordValid(user, passwordVerification)) {
-      return "redirect:/register?passwordVerificationFailed=true";
+    if (userService.isUserInvalid(user)) {
+      return "redirect:/?passwordVerificationFailed=true&usernameVerificationFailed=true";
+    } else if (!userService.isPasswordValid(user)) {
+      return "redirect:/?passwordVerificationFailed=true";
     } else {
-      return "redirect:/register?usernameVerificationFailed=true";
+      return "redirect:/?usernameVerificationFailed=true";
     }
   }
 
   @GetMapping(value = "/login")
   public String getLoginWithUserView(Model model,
-                                     @RequestParam(required = false) Boolean invalidUserdata) {
+                                     @RequestParam(required = false) Boolean invalidUserdata,
+                                     @ModelAttribute User user) {
     if (invalidUserdata != null) {
       model.addAttribute("invalidUserdata", invalidUserdata);
+      model.addAttribute("user", invalidUserdata ? user : new User());
     }
     return "login";
   }
 
   @PostMapping(value = "/login")
-  public String getUserDatasFromLoginView(String username, String password, Model model) {
-    if (userService.validateUserData(username, password)) {
-      userService.setUserActive(username);
-      return "redirect:/home";
+  public String getUserDatasFromLoginView(@ModelAttribute User user,
+                                          RedirectAttributes attributes) {
+    attributes.addFlashAttribute(user);
+    if (!userService.validateUserData(user.getName(), user.getPassword())) {
+      return "redirect:/?invalidUserdata=true";   //vmiert a nem invalid adatokra is azt reagalja, hogy invalid, es nem irja ki nekem a template-ben az uzenetet!
+    } else {
+      userService.setUserActive(user.getName());
+      return "redirect:/?userGetActive=true";
     }
-    return "redirect:/login?invalidUserdata=true";
   }
 
   @GetMapping(value = "/logout")
   public String getBackToLogin() {
     userService.setActiveUserToInactive();
-    return "redirect:/login";
-  }
-
-  @ResponseBody
-  @DeleteMapping("/delete/post/{id}")
-  public ResponseEntity<?> deletePost(@PathVariable Long id){
-    if (postService.findById(id) != null){
-      postService.delete(id);
-      return new ResponseEntity<>(HttpStatus.OK);
-    } return new ResponseEntity<>("No post at the given index" + id, HttpStatus.NOT_FOUND);
-  }
-
-  @ResponseBody
-  @DeleteMapping("/delete/user/{id}")
-  public ResponseEntity<?> deleteUser(@PathVariable Long id){
-    if (userService.findById(id) != null){
-      userService.delete(id);
-      return new ResponseEntity<>("User successfully deleted", HttpStatus.OK);
-    } return new ResponseEntity<>("No user at the given index " + id, HttpStatus.NOT_FOUND);
+    return "redirect:/?userGetInactive=true";
   }
 }
 

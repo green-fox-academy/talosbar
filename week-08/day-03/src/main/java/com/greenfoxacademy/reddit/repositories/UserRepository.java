@@ -11,6 +11,8 @@ public interface UserRepository extends CrudRepository<User, Long> {
 
   Optional<User> findByName(String name);
 
+  Optional<User> findByPassword(String password);
+
   @Query("SELECT u FROM User u WHERE u.active  = true")
   User getActiveUser();
 }

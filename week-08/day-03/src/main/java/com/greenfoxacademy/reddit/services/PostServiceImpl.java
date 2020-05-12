@@ -112,7 +112,8 @@ public class PostServiceImpl implements PostService {
     if (pageNumber == 1) {
       return postRepository.getFirstTenPostsByDescendingByVotes();
     } else {
-      return postRepository.getAllPostsWithDescendingOrderWithLimitTenAndSelectedOffset((pageNumber - 1) * 10);
+      return postRepository
+          .getAllPostsWithDescendingOrderWithLimitTenAndSelectedOffset((pageNumber - 1) * 10);
     }
   }
 

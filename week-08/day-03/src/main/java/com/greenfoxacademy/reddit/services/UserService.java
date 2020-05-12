@@ -14,11 +14,11 @@ public interface UserService {
 
   boolean validateUserData(String name, String password);
 
-  boolean isUserValid(User user, String passwordVerification);
+  boolean isUserValid(User user);
 
-  boolean isUserInvalid(User user, String passwordVerification);
+  boolean isUserInvalid(User user);
 
-  boolean isPasswordValid(User user, String passwordVerification);
+  boolean isPasswordValid(User user);
 
   void setUserActive(String name);
 

@@ -10,7 +10,8 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="/submit">Submit</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -22,25 +23,25 @@
     </div>
 </nav>
 <div class="container">
-<h1>Trending posts</h1>
-<table class="table">
-    <thead class="thead-dark">
-    <tr>
-        <th scope="col">Vote</th>
-        <th scope="col">Like</th>
-        <th scope="col">Dislike</th>
-        <th scope="col">Title</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="post : ${posts}" th:object="${post}">
-        <th scope="row" th:text="*{vote}"></th>
-        <td><a th:href="@{|/+/${post.id}|}">+</a></td>
-        <td><a th:href="@{|/-/${post.id}|}">-</a></td>
-        <td><a th:href="*{url}" th:text="*{title}"></a></td>
-    </tr>
-    </tbody>
-</table>
+    <h1>Trending posts</h1>
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Vote</th>
+            <th scope="col">Like</th>
+            <th scope="col">Dislike</th>
+            <th scope="col">Title</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="post : ${posts}" th:object="${post}">
+            <th scope="row" th:text="*{vote}"></th>
+            <td><a th:href="@{|/+/${post.id}|}">+</a></td>
+            <td><a th:href="@{|/-/${post.id}|}">-</a></td>
+            <td><a th:href="*{url}" th:text="*{title}"></a></td>
+        </tr>
+        </tbody>
+    </table>
     <nav aria-label="Page navigation example">
         <ul class="pagination">
             <li class="page-item" th:each="page : ${pageNumbers}"><a class="page-link" th:href="@{|/home/${page}|}"
