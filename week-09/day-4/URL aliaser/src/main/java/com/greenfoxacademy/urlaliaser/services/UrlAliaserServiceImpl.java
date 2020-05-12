@@ -1,10 +1,13 @@
 package com.greenfoxacademy.urlaliaser.services;
 
+import com.greenfoxacademy.urlaliaser.dtos.SecretDTO;
 import com.greenfoxacademy.urlaliaser.models.Link;
 import com.greenfoxacademy.urlaliaser.repositories.UrlAliaserRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +24,8 @@ public class UrlAliaserServiceImpl implements UrlAliaserService {
 
   @Override
   public void addLink(Link link) {
+    Random random = new Random();
+    link.setSecretCode(String.format("%04d", random.nextInt(10000)));
     urlAliaserRepository.save(link);
   }
 
@@ -32,21 +37,8 @@ public class UrlAliaserServiceImpl implements UrlAliaserService {
   }
 
   @Override
-  public boolean isSecretCodeMatching(Link link, Integer secretCode) {
-    if (link.getSecretCode().equals(secretCode)) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  @Override
-  public boolean isAliasExists(Link link) {
-    if (urlAliaserRepository.findByAlias(link.getAlias()).isPresent()) {
-      return true;
-    } else {
-      return false;
-    }
+  public boolean isAliasExists(String alias) {
+    return urlAliaserRepository.findByAlias(alias).isPresent();
   }
 
   @Override
@@ -70,7 +62,18 @@ public class UrlAliaserServiceImpl implements UrlAliaserService {
   }
 
   @Override
-  public void delete(Long id) {
-    urlAliaserRepository.delete(findById(id));
+  public void deleteLinkBySecretCode(String secretCode, long id) throws NotFoundException {
+    Optional<Link> optionalLink = urlAliaserRepository.findById(id);
+
+    if (optionalLink.isPresent()) {
+      Link storedLink = optionalLink.get();
+      if (storedLink.getSecretCode().equals(secretCode)) {
+        urlAliaserRepository.delete(storedLink);
+      } else {
+        throw new IllegalArgumentException("Secret code is not valid");
+      }
+    } else {
+      throw new NotFoundException("Link with the given ID cannot be found");
+    }
   }
 }

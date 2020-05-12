@@ -8,7 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UrlAliaserRepository extends CrudRepository<Link, Long> {
 
-  Optional<Link> findBySecretCode(int secretCode);
-
   Optional<Link> findByAlias(String alias);
 }

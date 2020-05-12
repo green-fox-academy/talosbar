@@ -1,8 +1,10 @@
 package com.greenfoxacademy.urlaliaser.controllers;
 
+import com.greenfoxacademy.urlaliaser.dtos.SecretDTO;
 import com.greenfoxacademy.urlaliaser.models.Link;
 import com.greenfoxacademy.urlaliaser.services.UrlAliaserService;
 import java.util.List;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,41 +15,33 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class UrlAliaserRestController {
+public class UrlAliaserAPIController {
 
   private UrlAliaserService urlAliaserService;
 
   @Autowired
-  public UrlAliaserRestController(
+  public UrlAliaserAPIController(
       UrlAliaserService urlAliaserService) {
     this.urlAliaserService = urlAliaserService;
   }
 
-  @GetMapping("/a/{alias}")
-  public ResponseEntity<?> incrementHitCountIfAliasExists(Link link, @PathVariable String alias) {
-    if (alias == null || !urlAliaserService.isAliasExists(link)) {
-      return ResponseEntity.notFound().build();
-    } else {
-      link.hit();
-      return ResponseEntity.ok(link.getUrl());
-    }
-  }
-
   @GetMapping("/api/links")
   public List<Link> showAllLinks() {
-    return this.urlAliaserService.returnAllLinks();
+    return urlAliaserService.returnAllLinks();
   }
 
   @DeleteMapping("/delete/post/{id}")
-  public ResponseEntity<?> deleteLink(@RequestBody Link link) {
-    if (urlAliaserService.isAliasExists(link)) {
-      urlAliaserService.delete(link.getId());
-      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    } else if (urlAliaserService.isAliasExists(link) &&
-        !urlAliaserService.isSecretCodeMatching(link, link.getSecretCode())) {
-      return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-    } else {
-      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+  public ResponseEntity<?> deleteLink(@PathVariable long id, @RequestBody SecretDTO secretCode) {
+    HttpStatus status;
+
+    try {
+      urlAliaserService.deleteLinkBySecretCode(secretCode.getSecretCode(), id);
+      status = HttpStatus.NO_CONTENT;
+    } catch (IllegalArgumentException ex) {
+      status = HttpStatus.FORBIDDEN;
+    } catch (NotFoundException ex) {
+      status = HttpStatus.NOT_FOUND;
     }
+    return ResponseEntity.status(status).build();
   }
 }

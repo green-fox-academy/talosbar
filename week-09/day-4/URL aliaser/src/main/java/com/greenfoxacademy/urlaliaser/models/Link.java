@@ -19,21 +19,12 @@ public class Link {
 
   private String url;
   private String alias;
-
-  @JsonIgnore
-  private Integer secretCode;
-
   private int hitCount;
 
-  public Link() {
-  }
+  @JsonIgnore
+  private String secretCode;
 
-  public Link(long id, String url, String alias) {
-    this.id = id;
-    this.url = url;
-    this.alias = alias;
-    this.secretCode = (int) (Math.random() * 9000) + 1000;
-    this.hitCount = 0;
+  public Link() {
   }
 
   public void hit() {
