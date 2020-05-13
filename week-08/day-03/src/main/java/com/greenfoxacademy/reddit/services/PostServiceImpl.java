@@ -40,9 +40,19 @@ public class PostServiceImpl implements PostService {
   }
 
   @Override
-  public void addUserToPost(User user, Post post) {
+  public void updateUserDataAtPost(User user, Post post) {
     post.setCreator(user);
     postRepository.save(post);
+  }
+
+  @Override
+  public void addPostWithSettingUser(Post post, long userId) {
+    Optional<User> optionalUser = userRepository.findById(userId);
+    if (optionalUser.isPresent()) {
+      User user = optionalUser.get();
+      post.setCreator(user);
+      this.addPost(post);
+    }
   }
 
   @Override

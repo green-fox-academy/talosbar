@@ -14,7 +14,9 @@ public interface PostService {
 
   void addPost(Post post);
 
-  void addUserToPost(User user, Post post);
+  void updateUserDataAtPost(User user, Post post);
+
+  void addPostWithSettingUser(Post post, long userId);
 
   Post findById(long id);
 

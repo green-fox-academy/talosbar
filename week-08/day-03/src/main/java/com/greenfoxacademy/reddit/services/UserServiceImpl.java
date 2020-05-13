@@ -44,48 +44,32 @@ public class UserServiceImpl implements UserService {
     Optional<User> foundUser = userRepository.findByName(name);
     if (foundUser.isPresent()) {
       User user = foundUser.get();
-      if (user.getName().equals(name) && user.getPassword().equals(password)) {
-        return true;
-      }
+      return user.getName().equals(name) && user.getPassword().equals(password);
     }
     return false;
   }
 
   @Override
   public boolean isUserValid(User user) {
-    if (isPasswordValid(user) && isNameValid(user)) {
-      return true;
-    } else {
-      return false;
-    }
+    return isPasswordValid(user) && isNameValid(user);
   }
 
   @Override
   public boolean isUserInvalid(User user) {
-    if (!isPasswordValid(user) && !isNameValid(user)) {
-      return true;
-    } else {
-      return false;
-    }
+    return !isPasswordValid(user) && !isNameValid(user);
   }
 
   @Override
   public boolean isPasswordValid(User user) {
-    if (!userRepository.findByPassword(user.getPassword()).isPresent()) {
-      return true;
-    } else {
-      return false;
-    }
+    return !userRepository.findByPassword(user.getPassword()).isPresent();
   }
 
+  @Override
   public boolean isNameValid(User user) {
-    if (!userRepository.findByName(user.getName()).isPresent()) {
-      return true;
-    } else {
-      return false;
-    }
+    return !userRepository.findByName(user.getName()).isPresent();
   }
 
+  @Override
   public void setUserActive(String name) {
     Optional<User> optionalUser = userRepository.findByName(name);
     if (optionalUser.isPresent()) {
@@ -95,6 +79,7 @@ public class UserServiceImpl implements UserService {
     }
   }
 
+  @Override
   public void setActiveUserToInactive() {
     User user = userRepository.getActiveUser();
     user.setActive(false);
@@ -103,11 +88,7 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public boolean isActiveAnyUser() {
-    if (userRepository.getActiveUser() == null) {
-      return false;
-    } else {
-      return true;
-    }
+    return userRepository.getActiveUser() != null;
   }
 
   @Override

@@ -18,6 +18,8 @@ public interface UserService {
 
   boolean isUserInvalid(User user);
 
+  boolean isNameValid(User user);
+
   boolean isPasswordValid(User user);
 
   void setUserActive(String name);

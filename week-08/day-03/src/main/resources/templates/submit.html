@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Submit a new post</title>
@@ -24,16 +24,20 @@
 </nav>
 <div class="container">
     <h1>Submit a new post</h1>
-    <form class="title" action="/submit" method="POST">
+    <form th:action="@{submit}" th:method="post">
         <div class="form-row">
             <div class="col-7">
-                <input type="text" class="form-control" name="title" placeholder="Title">
+                <label for="title">Title</label>
+                <input id="title" type="text" class="form-control" placeholder="Title" name="title">
             </div>
             <div class="col">
-                <input type="text" class="form-control" name="url" placeholder="URL">
+                <label for="url">Url</label>
+                <input id="url" type="text" class="form-control" placeholder="URL" name="url">
             </div>
         </div>
-        <br>
+        <select name="userId">
+            <option th:each="user : ${users}" th:value="${user.userId}" th:text="${user.name}"></option>
+        </select>
         <button type="submit" class="btn btn-outline-danger">SUBMIT</button>
     </form>
 </div>
