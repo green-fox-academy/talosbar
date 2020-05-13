@@ -5,6 +5,7 @@ import com.greenfoxacademy.reddit.models.User;
 import com.greenfoxacademy.reddit.repositories.PostRepository;
 import com.greenfoxacademy.reddit.repositories.UserRepository;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,7 @@ public class PostServiceImpl implements PostService {
     if (optionalUser.isPresent()) {
       User user = optionalUser.get();
       post.setCreator(user);
+      post.setCreatedAt(new Date());
       this.addPost(post);
     }
   }
