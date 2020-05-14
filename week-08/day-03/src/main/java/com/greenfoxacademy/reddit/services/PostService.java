@@ -8,15 +8,15 @@ import org.springframework.stereotype.Service;
 @Service
 public interface PostService {
 
-  List<Post> returnAllPosts();
+  List<Post> getAllPosts();
 
-  List<Post> returnFirstTenPostsDescByVotes();
+  List<Post> getFirstTenPostsDescByVotes();
 
   void addPost(Post post);
 
   void updateUserDataAtPost(User user, Post post);
 
-  void addPostWithSettingUser(Post post, long userId);
+  void savePostWithUser(Post post, long userId);
 
   Post findById(long id);
 
@@ -26,11 +26,11 @@ public interface PostService {
 
   void updatePostVoteField(String option, long id);
 
-  List<Integer> getHowManyPageDoWeNeed();
+  List<Integer> getNumberOfPages();
 
-  List<Post> getPostsForHomePage();
+  List<Post> getFirstTenPosts();
 
   List<Post> getPostsWithPageNumber(Integer pageNumber);
 
-  void delete(Long id);
+  void deletePost(Long id);
 }

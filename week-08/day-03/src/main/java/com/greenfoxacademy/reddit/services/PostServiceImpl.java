@@ -24,14 +24,14 @@ public class PostServiceImpl implements PostService {
   }
 
   @Override
-  public List<Post> returnAllPosts() {
+  public List<Post> getAllPosts() {
     List<Post> posts = new ArrayList<>();
     postRepository.findAll().forEach(posts::add);
     return posts;
   }
 
   @Override
-  public List<Post> returnFirstTenPostsDescByVotes() {
+  public List<Post> getFirstTenPostsDescByVotes() {
     return postRepository.getFirstTenPostsByDescendingByVotes();
   }
 
@@ -47,7 +47,7 @@ public class PostServiceImpl implements PostService {
   }
 
   @Override
-  public void addPostWithSettingUser(Post post, long userId) {
+  public void savePostWithUser(Post post, long userId) {
     Optional<User> optionalUser = userRepository.findById(userId);
     if (optionalUser.isPresent()) {
       User user = optionalUser.get();
@@ -100,7 +100,7 @@ public class PostServiceImpl implements PostService {
   }
 
   @Override
-  public List<Integer> getHowManyPageDoWeNeed() {
+  public List<Integer> getNumberOfPages() {
     List<Integer> pageNumbers = new ArrayList<>();
     Integer sizeOfPosts = postRepository.getAllPostsWithDescendingOrder().size();
     Integer pageNumber = 1;
@@ -115,7 +115,7 @@ public class PostServiceImpl implements PostService {
   }
 
   @Override
-  public List<Post> getPostsForHomePage() {
+  public List<Post> getFirstTenPosts() {
     return postRepository.getFirstTenPostsByDescendingByVotes();
   }
 
@@ -130,7 +130,7 @@ public class PostServiceImpl implements PostService {
   }
 
   @Override
-  public void delete(Long id) {
+  public void deletePost(Long id) {
     postRepository.delete(findById(id));
   }
 }

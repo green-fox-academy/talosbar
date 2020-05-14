@@ -27,7 +27,7 @@ public class MainAPIController {
   @DeleteMapping("/delete/post/{id}")
   public ResponseEntity<?> deletePost(@PathVariable Long id) {
     if (postService.findById(id) != null) {
-      postService.delete(id);
+      postService.deletePost(id);
       return new ResponseEntity<>(HttpStatus.OK);
     }
     return new ResponseEntity<>("No post at the given index" + id, HttpStatus.NOT_FOUND);
@@ -35,10 +35,10 @@ public class MainAPIController {
 
   @DeleteMapping("/delete/user/{id}")
   public ResponseEntity<?> deleteUser(@PathVariable Long id) {
-    if (userService.findById(id) != null) {
-      userService.delete(id);
+    if (userService.findUserById(id) != null) {
+      userService.deleteUser(id);
       return new ResponseEntity<>("User successfully deleted", HttpStatus.OK);
     }
-    return new ResponseEntity<>("No user at the given index " + id, HttpStatus.NOT_FOUND);
+    return new ResponseEntity<>("No post at the given index" + id, HttpStatus.NOT_FOUND);
   }
 }

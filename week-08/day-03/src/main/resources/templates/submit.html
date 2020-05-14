@@ -5,7 +5,7 @@
     <title>Submit a new post</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" type="text/css" href="../static/main.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/main.css}">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -28,11 +28,11 @@
         <div class="form-row">
             <div class="col-7">
                 <label for="title">Title</label>
-                <input id="title" type="text" class="form-control" placeholder="Title" name="title">
+                <input id="title" type="text" class="form-control" placeholder="Title" th:field="${post.title}">
             </div>
             <div class="col">
                 <label for="url">Url</label>
-                <input id="url" type="text" class="form-control" placeholder="URL" name="url">
+                <input id="url" type="text" class="form-control" placeholder="URL" th:field="${post.url}">
             </div>
         </div>
         <select name="userId">

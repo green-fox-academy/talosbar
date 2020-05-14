@@ -5,7 +5,7 @@
     <title>Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" type="text/css" href="../static/main.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/main.css}">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -17,6 +17,7 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
             <a class="nav-item nav-link active" href="/register">Register<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="/logout">Logout</a>
             <a class="nav-item nav-link" href="/home">Home</a>
         </div>
     </div>
@@ -27,10 +28,10 @@
     <form class="title" action="/login" method="POST">
         <div class="form-row">
             <div class="col-7">
-                <input type="text" class="form-control" placeholder="Username" name="name">
+                <input type="text" class="form-control" placeholder="Username" th:field="${user.name}">
             </div>
             <div class="col-7">
-                <input type="text" class="form-control" placeholder="Password" name="password">
+                <input type="text" class="form-control" placeholder="Password" th:field="${user.password}">
             </div>
         </div>
         <button type="submit" class="btn btn-outline-danger">LOGIN</button>

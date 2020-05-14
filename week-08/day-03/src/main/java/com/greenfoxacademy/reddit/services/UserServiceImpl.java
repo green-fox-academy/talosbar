@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public List<User> returnAllUser() {
+  public List<User> getAllUser() {
     List<User> users = new ArrayList<>();
     userRepository.findAll().forEach(users::add);
     return users;
@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public User findById(long id) {
+  public User findUserById(long id) {
     User user = new User();
     Optional<User> optionalUser = userRepository.findById(id);
     if (optionalUser.isPresent()) {
@@ -87,12 +87,12 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public boolean isActiveAnyUser() {
+  public boolean isAnyUserActive() {
     return userRepository.getActiveUser() != null;
   }
 
   @Override
-  public void delete(Long id) {
-    userRepository.delete(findById(id));
+  public void deleteUser(Long id) {
+    userRepository.delete(findUserById(id));
   }
 }

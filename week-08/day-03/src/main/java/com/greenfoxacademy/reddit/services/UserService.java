@@ -6,11 +6,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface UserService {
-  List<User> returnAllUser();
+  List<User> getAllUser();
 
   void addUser(User user);
 
-  User findById(long id);
+  User findUserById(long id);
 
   boolean validateUserData(String name, String password);
 
@@ -26,7 +26,7 @@ public interface UserService {
 
   void setActiveUserToInactive();
 
-  boolean isActiveAnyUser();
+  boolean isAnyUserActive();
 
-  void delete(Long id);
+  void deleteUser(Long id);
 }
