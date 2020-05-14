@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 public interface PetService {
   List<Pet> getAllPets();
 
-  List<Pet> getPetsWhichOwnerIsOlderThanGivenAge(int humanAge);
-
-  boolean hasOwner(Pet pet);
+  List<String> getPetsWhichOwnerIsOlderThanGivenAge(int humanAge);
 
   boolean isPetNameAddedAlready(String petName);
 
   void addPet(Pet pet);
+
+  void savePetWithOwner(Pet pet, long humanId);
 }

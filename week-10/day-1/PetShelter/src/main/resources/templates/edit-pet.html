@@ -13,7 +13,7 @@
     <p1 th:if="${invalidPetData}" style="color: red">"Something went wrong, please check if the fields are filled out
         or use another name, because the name is already taken"
     </p1>
-    <form class="title" th:action="@{/edit-pet}" method="post">
+    <form class="title" th:action="@{/add-pet}" method="post">
         <div class="form-row">
             <div class="col-7">
                 <input type="text" class="form-control" placeholder="Name of pet" th:field="${pet.petName}">
@@ -24,10 +24,11 @@
         </select>
         <button type="submit" class="btn btn-outline-danger">ADD</button>
     </form>
-    <form class="title" th:action="@{/api/pet-names-older-human}" method="post">
+    <h1>Search pets with owner who are older than given parameter</h1>
+    <form class="title" th:action="@{/api/pet-names-older-human/}" method="POST">
         <div class="form-row">
             <div class="col-7">
-                <input type="text" class="form-control" placeholder="Age of owner" th:field="${pet.owner.humanAge}">
+                <input type="text" class="form-control" placeholder="Age of owner" name="humanAge">
             </div>
         </div>
         <button type="submit" class="btn btn-outline-danger">SEARCH</button>

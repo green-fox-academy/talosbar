@@ -27,7 +27,7 @@ public class HumanServiceImpl implements HumanService {
   }
 
   @Override
-  public boolean isHumanNameAddedAlready(String humanName) {
+  public boolean isHumanNameSavedAlready(String humanName) {
     Optional<Human> foundHuman = humanRepository.findByHumanName(humanName);
     if (foundHuman.isPresent()) {
       Human human = foundHuman.get();
@@ -43,12 +43,11 @@ public class HumanServiceImpl implements HumanService {
 
   @Override
   public Human findHumanById(long humanId) {
-    Human human = new Human();
     Optional<Human> optionalHuman = humanRepository.findById(humanId);
     if (optionalHuman.isPresent()) {
-      human = optionalHuman.get();
+      return optionalHuman.get();
     }
-    return human;
+    return null;
   }
 
   @Override
@@ -73,10 +72,9 @@ public class HumanServiceImpl implements HumanService {
 
   @Override
   public Human getHumanByGivenParameters(long humanId, String humanName) throws NotFoundException {
-    Human human = new Human();
     Optional<Human> optionalHuman = humanRepository.findById(humanId);
     if (optionalHuman.isPresent()) {
-      human = optionalHuman.get();
+      Human human = optionalHuman.get();
       if (human.getHumanName().equals(humanName)) {
         return human;
       } else {

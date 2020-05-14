@@ -13,7 +13,7 @@
     <p1 th:if="${invalidHumanData}" style="color: red">"Something went wrong, please check if the fields are filled out
         or use another name, because the name is already taken"
     </p1>
-    <form class="title" th:action="@{/edit-human}" method="post">
+    <form class="title" th:action="@{/add-human}" method="POST">
         <div class="form-row">
             <div class="col-7">
                 <input type="text" class="form-control" placeholder="Name of human" th:field="${human.humanName}">
@@ -26,7 +26,7 @@
     </form>
 
     <h1>Delete human by ID</h1>
-    <form class="title" th:action="@{/delete/${human.humanId}}" method="GET">
+    <form class="title" th:action="@{/delete}" method="POST">
         <div class="form-row">
             <div class="col-7">
                 <input type="text" class="form-control" placeholder="ID of human" th:field="${human.humanId}">
@@ -35,8 +35,8 @@
         <button type="submit" class="btn btn-outline-danger">DELETE</button>
     </form>
 
-    <h1>Delete human by ID</h1>
-    <form class="title" th:action="@{/edit/${human.humanId}}" method="GET">
+    <h1>Edit human by ID</h1>
+    <form class="title" th:action="@{/edit}" method="POST">
         <div class="form-row">
             <div class="col-7">
                 <input type="text" class="form-control" placeholder="ID of human" th:field="${human.humanId}">

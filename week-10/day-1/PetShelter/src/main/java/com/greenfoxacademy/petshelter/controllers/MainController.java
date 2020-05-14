@@ -32,51 +32,65 @@ public class MainController {
     return "list-humen";
   }
 
-  @GetMapping("/list-pets") //jo itt a modelattribute? template-ben alahuzza vmiert a hasOwnert...
-  public String getListOfPets(Model model,
-                              @ModelAttribute Pet pet) {
+  @GetMapping("/list-pets")
+  public String getListOfPets(Model model) {
     model.addAttribute("pets", petService.getAllPets());
-    model.addAttribute("hasOwner", petService.hasOwner(pet));
     return "list-pets";
   }
 
-  @GetMapping("/add-human") //hogyan kellene korabban elfogadott object adataival feltoltenem?
+  @GetMapping("/add-human")
   public String editHuman(Model model, @RequestParam(required = false) Boolean invalidHumanData,
                           @ModelAttribute Human human) {
     model.addAttribute("invalidHumanData", invalidHumanData);
-    model.addAttribute("human", new Human());
+    Human humanToRender =
+        invalidHumanData == null ? new Human() : (invalidHumanData ? human : new Human());
+    model.addAttribute("human", humanToRender);
     return "edit-human";
   }
 
   @PostMapping("/add-human")
-  //vmiert hozza akarja adni a mar letezo nevet is, es a query miatt exceptiont dob
   public String addNewHuman(@ModelAttribute Human human, RedirectAttributes attributes) {
     attributes.addFlashAttribute(human);
-    if (humanService.isHumanNameAddedAlready(human.getHumanName())) {
+    if (humanService.isHumanNameSavedAlready(human.getHumanName())) {
       return "redirect:/add-human?invalidHumanData=true";
     } else {
       humanService.addHuman(human);
-      return "edit-human";
+      return "redirect:/add-human?newHumanIsAdded=true";
     }
   }
 
-  @GetMapping("/add-pet") //hogyan kellene korabban elfogadott object adataival feltoltenem?
+  @PostMapping("/delete")
+  public String deleteHumanByGivenId(@ModelAttribute Human human) {
+    humanService.deleteHuman(human.getHumanId());
+    return "redirect:/add-human?humanIsDeleted=true";
+  }
+
+  @PostMapping("/edit")
+  public String editHumanByGivenParameters(@ModelAttribute Human human) {
+    humanService.editHuman(human.getHumanId(), human.getHumanName(), human.getHumanAge());
+    return "redirect:/add-human?humanIsEdited=true";
+  }
+
+  @GetMapping("/add-pet")
   public String editPet(Model model, @RequestParam(required = false) Boolean invalidPetData,
-                          @ModelAttribute Pet pet) {
+                        @ModelAttribute Pet pet) {
     model.addAttribute("invalidPetData", invalidPetData);
-    model.addAttribute("pet", new Pet());
+    Pet petToRender = invalidPetData == null ? new Pet() : (invalidPetData ? pet : new Pet());
+    model.addAttribute("pet", petToRender);
     model.addAttribute("owners", humanService.getAllHumen());
     return "edit-pet";
   }
 
   @PostMapping("/add-pet")
-  public String addNewPet(@ModelAttribute Pet pet, RedirectAttributes attributes) {
+  public String addNewPet(@ModelAttribute Pet pet,
+                          @RequestParam("humanId") Long humanId,
+                          RedirectAttributes attributes) {
     attributes.addFlashAttribute(pet);
     if (petService.isPetNameAddedAlready(pet.getPetName())) {
       return "redirect:/add-pet?invalidPetData=true";
     } else {
-      petService.addPet(pet);
-      return "edit-pet";
+      petService.savePetWithOwner(pet, humanId);
+      return "redirect:/add-pet?newPetIsAdded=true";
     }
   }
 }

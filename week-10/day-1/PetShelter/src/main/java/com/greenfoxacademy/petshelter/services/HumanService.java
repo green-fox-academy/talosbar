@@ -10,7 +10,7 @@ public interface HumanService {
 
   List<Human> getAllHumen();
 
-  boolean isHumanNameAddedAlready(String humanName);
+  boolean isHumanNameSavedAlready(String humanName);
 
   void addHuman(Human human);
 

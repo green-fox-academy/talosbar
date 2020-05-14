@@ -1,6 +1,5 @@
 package com.greenfoxacademy.petshelter.repositories;
 
-import com.greenfoxacademy.petshelter.models.Human;
 import com.greenfoxacademy.petshelter.models.Pet;
 import java.util.List;
 import java.util.Optional;
@@ -13,6 +12,7 @@ public interface PetRepository extends CrudRepository<Pet, Long> {
 
   Optional<Pet> findByPetName(String petName);
 
-  @Query(value = "SELECT * FROM pet ORDER WHERE owner.humanAge > {humanAge}", nativeQuery = true)
-  List<Pet> getPetsWhichOwnerIsOlderThanGivenAge(); //???
+  @Query(value = "SELECT * FROM pet", nativeQuery = true)
+  List<Pet> getAllPets();
+
 }
