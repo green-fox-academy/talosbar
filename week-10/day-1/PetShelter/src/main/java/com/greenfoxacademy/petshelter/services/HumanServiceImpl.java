@@ -5,6 +5,7 @@ import com.greenfoxacademy.petshelter.repositories.HumanRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -67,6 +68,22 @@ public class HumanServiceImpl implements HumanService {
       human.setHumanName(humanName);
       human.setHumanAge(humanAge);
       humanRepository.save(human);
+    }
+  }
+
+  @Override
+  public Human getHumanByGivenParameters(long humanId, String humanName) throws NotFoundException {
+    Human human = new Human();
+    Optional<Human> optionalHuman = humanRepository.findById(humanId);
+    if (optionalHuman.isPresent()) {
+      human = optionalHuman.get();
+      if (human.getHumanName().equals(humanName)) {
+        return human;
+      } else {
+        throw new IllegalArgumentException("Human name is not valid");
+      }
+    } else {
+      throw new NotFoundException("Human with the given ID cannot be found");
     }
   }
 }

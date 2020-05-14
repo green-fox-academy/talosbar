@@ -45,7 +45,7 @@ public class MainController {
                           @ModelAttribute Human human) {
     model.addAttribute("invalidHumanData", invalidHumanData);
     model.addAttribute("human", new Human());
-    return "edit";
+    return "edit-human";
   }
 
   @PostMapping("/add-human")
@@ -56,7 +56,27 @@ public class MainController {
       return "redirect:/add-human?invalidHumanData=true";
     } else {
       humanService.addHuman(human);
-      return "edit";
+      return "edit-human";
+    }
+  }
+
+  @GetMapping("/add-pet") //hogyan kellene korabban elfogadott object adataival feltoltenem?
+  public String editPet(Model model, @RequestParam(required = false) Boolean invalidPetData,
+                          @ModelAttribute Pet pet) {
+    model.addAttribute("invalidPetData", invalidPetData);
+    model.addAttribute("pet", new Pet());
+    model.addAttribute("owners", humanService.getAllHumen());
+    return "edit-pet";
+  }
+
+  @PostMapping("/add-pet")
+  public String addNewPet(@ModelAttribute Pet pet, RedirectAttributes attributes) {
+    attributes.addFlashAttribute(pet);
+    if (petService.isPetNameAddedAlready(pet.getPetName())) {
+      return "redirect:/add-pet?invalidPetData=true";
+    } else {
+      petService.addPet(pet);
+      return "edit-pet";
     }
   }
 }

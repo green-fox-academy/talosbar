@@ -13,7 +13,7 @@
     <p1 th:if="${invalidHumanData}" style="color: red">"Something went wrong, please check if the fields are filled out
         or use another name, because the name is already taken"
     </p1>
-    <form class="title" action="/add-human" method="POST">
+    <form class="title" th:action="@{/edit-human}" method="post">
         <div class="form-row">
             <div class="col-7">
                 <input type="text" class="form-control" placeholder="Name of human" th:field="${human.humanName}">

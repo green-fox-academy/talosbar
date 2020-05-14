@@ -2,6 +2,7 @@ package com.greenfoxacademy.petshelter.services;
 
 import com.greenfoxacademy.petshelter.models.Human;
 import java.util.List;
+import javassist.NotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,4 +19,6 @@ public interface HumanService {
   void deleteHuman(long humanId);
 
   void editHuman(long humanId, String humanName, int humanAge);
+
+  Human getHumanByGivenParameters(long humanId, String humanName) throws NotFoundException;
 }
