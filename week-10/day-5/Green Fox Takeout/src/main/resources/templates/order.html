@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GF Takeout</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/main.css}">
+<body>
+<div class="container">
+    <h1>Welcome To Green Fox Takeout!</h1>
+    <h2>Please enter your info and choose your meal</h2>
+    <form class="title" th:action="@{/order}" method="post">
+        <div class="form-row">
+            <div class="col-7">
+                <label for="name">Name:</label>
+                <input id="name" type="text" class="form-control" name="name">
+                <label for="address">Address:</label>
+                <input id="address" type="text" class="form-control" name="address">
+            </div>
+        </div>
+        <div>
+            <legend>Bases</legend>
+            <input type="radio" id="rice noodles" name="base" value="rice noodles">
+            <label for="rice noodles">Rice noodles</label><br>
+            <input type="radio" id="egg noodles" name="base" value="egg noodles">
+            <label for="egg noodles">Egg noodles</label><br>
+            <input type="radio" id="white rice" name="base" value="white rice">
+            <label for="white rice">White rice</label>
+        </div>
+        <label for="topping">Toppings</label>
+        <select id="topping" name="topping">
+            <option value="chicken">Chicken</option>
+            <option value="beef">Beef</option>
+            <option value="smoked tofu">Smoked tofu</option>
+        </select>
+        <button type="submit" class="btn btn-outline-danger">Order</button>
+    </form>
+</div>
+<script src="/webjars/jquery/3.3.1/jquery.min.js"></script>
+<script src="/webjars/bootstrap/4.3.1/js/bootstrap.bundle.js"></script>
+</body>
+</html>

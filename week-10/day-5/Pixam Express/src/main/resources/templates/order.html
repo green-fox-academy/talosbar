@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/main.css}">
+<body>
+<div class="container">
+    <h1>Pixam Express</h1>
+    <a th:href="@{/statistics}">Order Statistics</a>
+    <form class="title" th:action="@{/order}" method="post">
+        <div class="form-row">
+            <div class="col-7">
+                <label for="name">Name:</label>
+                <input id="name" type="text" class="form-control" name="name">
+                <label for="address">Address:</label>
+                <input id="address" type="text" class="form-control" name="address">
+            </div>
+        </div>
+        <div>
+            <legend>Pizza</legend>
+            <input type="radio" id="margherita" name="type" value="Margherita">
+            <label for="margherita">Margherita</label><br>
+            <input type="radio" id="cotto" name="type" value="Prosciutto Cotto">
+            <label for="cotto">Prosciutto Cotto</label><br>
+            <input type="radio" id="diavola" name="type" value="Diavola">
+            <label for="diavola">Diavola</label><br>
+            <input type="radio" id="salame" name="type" value="Salame e Gorgonzola">
+            <label for="salame">Salame e Gorgonzola</label><br>
+            <input type="radio" id="funghi" name="type" value="Prosciutto e Funghi">
+            <label for="funghi">Prosciutto e Funghi</label><br>
+            <input type="radio" id="formaggi" name="type" value="4 Formaggi">
+            <label for="formaggi">4 Formaggi</label><br>
+        </div>
+        <button type="submit" class="btn btn-outline-danger">Order</button>
+    </form>
+</div>
+<script src="/webjars/jquery/3.3.1/jquery.min.js"></script>
+<script src="/webjars/bootstrap/4.3.1/js/bootstrap.bundle.js"></script>
+</body>
+</html>

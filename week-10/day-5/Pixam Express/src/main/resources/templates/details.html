@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your order</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/main.css}">
+<body>
+<div class="container">
+    <h1>Pixam express</h1>
+    <a th:href="@{/statistics}">Order Statistics</a>
+    <h2 th:text="'Your order (' + ${order.id} + ')'"></h2>
+    <table class="table">
+        <tr>
+            <th scope="row">Name:</th>
+            <td th:text="${order.name}"></td>
+        </tr>
+        <tr>
+            <th scope="row">Address:</th>
+            <td th:text="${order.address}"></td>
+        </tr>
+        <tr>
+            <th scope="row">Pizza:</th>
+            <td th:text="${order.type}"></td>
+        </tr>
+    </table>
+</div>
+<script src="/webjars/jquery/3.3.1/jquery.min.js"></script>
+<script src="/webjars/bootstrap/4.3.1/js/bootstrap.bundle.js"></script>
+</body>
+</html>
