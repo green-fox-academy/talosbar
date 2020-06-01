@@ -7,6 +7,7 @@ import {
     Link, BrowserRouter
 } from "react-router-dom";
 import States from "./States"
+import HomePage from "./HomePage";
 
 class Home extends Component {
 
@@ -30,13 +31,6 @@ class Home extends Component {
             </Router>
         );
     }
-}
-
-function HomePage() {
-    return <div>
-        <h1>Golden Accorn is life!</h1>
-        <img src="golden-acorn-illustration.png" alt="golden accorn"/>
-    </div>
 }
 
 ReactDOM.render(
