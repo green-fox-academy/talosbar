@@ -7,7 +7,7 @@ let myMatrix = [
 ]
 
 function transponseMatrix(matrix) {
-    return matrix[0].map((_, colIndex) => matrix.map(row => row[colIndex]));
+    return matrix[0].map((column, index) => matrix.map(row => row[index]));
 }
 
 console.log(transponseMatrix(myMatrix));
