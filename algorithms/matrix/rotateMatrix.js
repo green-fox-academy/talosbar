@@ -8,12 +8,14 @@ let myMatrix = [
     [7, 8, 9],
 ]
 
+//csak negyzetes matrixnal
 function rotateMatrix(twoDimensionalArray) {
     return twoDimensionalArray.map((row, i) =>
         row.map((itemOfColumn, j) =>
             twoDimensionalArray[2 - j][i]))
 }
 
+//nem negyzetes matrixnal is mukodik
 function createMatrixRows(n) {
     return Array(n).fill(null).map(() => []);
 }

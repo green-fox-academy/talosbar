@@ -8,7 +8,9 @@ let myObject = {
 }
 
 function getItemsWithMaxOccurence(unordered) {
-    let topTwoValues = Object.keys(unordered).sort(function (a, b) {
+    let topTwoValues = Object
+        .keys(unordered)
+        .sort(function (a, b) {
         return unordered[b] - unordered[a];
     });
     return topTwoValues[0] + ', ' + topTwoValues[1];
