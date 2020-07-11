@@ -1,0 +1,22 @@
+let stringToCompare = 'alma';
+let listToCompare = ['alms', 'sas', 'kslw', 'alom'];
+
+function calculateHamingDistance(word, string) {
+    return word.split('').reduce(
+        (distance, char, i) => {
+            // if (char !== string.charAt(i)) {
+            //     distance++;
+            // }
+            return distance + ((char !== string.charAt(i)) ? 1 : 0);
+        }, 0);
+}
+
+function countDistance(string, list) {
+    return list
+        .filter(word => word.length === string.length)
+        .filter(word => {
+            return calculateHamingDistance(word, string) <= 3;
+        });
+}
+
+console.log(countDistance(stringToCompare, listToCompare));
