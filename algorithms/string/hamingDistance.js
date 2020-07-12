@@ -1,6 +1,3 @@
-let stringToCompare = 'alma';
-let listToCompare = ['alms', 'sas', 'kslw', 'alom'];
-
 function calculateHamingDistance(word, string) {
     return word.split('').reduce(
         (distance, char, i) => {
@@ -19,4 +16,4 @@ function countDistance(string, list) {
         });
 }
 
-console.log(countDistance(stringToCompare, listToCompare));
+console.log(countDistance('alma', ['alms', 'sas', 'kslw', 'alom']));
