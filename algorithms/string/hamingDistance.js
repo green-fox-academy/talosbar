@@ -1,9 +1,6 @@
 function calculateHamingDistance(word, string) {
     return word.split('').reduce(
         (distance, char, i) => {
-            // if (char !== string.charAt(i)) {
-            //     distance++;
-            // }
             return distance + ((char !== string.charAt(i)) ? 1 : 0);
         }, 0);
 }
